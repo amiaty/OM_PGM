@@ -46,7 +46,7 @@ public class AMAlignment extends DistanceAlignment implements AlignmentProcess {
             }
 */
 
-            //double[][] matrix = new double[ontology1().nbClasses()][ontology2().nbClasses()];
+            double[][] matrix1 = new double[ontology1().nbClasses()][ontology2().nbClasses()];
             double ii = 0;
             int jj = -1;
             int nbClass1 = ontology2().nbClasses();
