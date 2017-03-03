@@ -117,7 +117,7 @@ public class AMAlignment extends DistanceAlignment implements AlignmentProcess {
             int[][] result = HungarianAlgorithm.hgAlgorithm( matrix, "max" );
             //int[][] result = callHungarianMethod( matrix, nbClasses1, nbClasses2 );
 
-            System.out.println("OK");
+            System.out.println("\nOK");
             for( i=0; i < result.length ; i++ ){
                 double val = matrix[result[i][0]][result[i][1]];
                 if( val > threshold ){
