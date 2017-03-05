@@ -14,6 +14,8 @@ import org.semanticweb.owl.align.Alignment;
 import org.semanticweb.owl.align.AlignmentException;
 import org.semanticweb.owl.align.AlignmentProcess;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 public class AMAlignment extends DistanceAlignment implements AlignmentProcess {
@@ -107,46 +109,44 @@ public class AMAlignment extends DistanceAlignment implements AlignmentProcess {
             int jj = -1;
             double step = 100.0 / nbClasses1;
 
-            for( i=0; i < nbClasses1; ++i ) {
-                for (j = 0; j < nbClasses2; ++j) {
+            for( i = 0; i < nbClasses1; ++i ) {
+                for (j = 0; j < nbClasses2; ++j)
                     matrix[i][j] = 1.0 - StringDistances.levenshteinDistance(class1s[i], class2s[j]);
-                }
                 if((ii += step) >= (jj + 1)) System.out.print(String.format("\r%d%% completed!", ++jj));
             }
-            double threshold = 0.3;
-            int[][] result = HungarianAlgorithm.hgAlgorithm( matrix, "max" );
-            //int[][] result = callHungarianMethod( matrix, nbClasses1, nbClasses2 );
-
+            double threshold = 0.8;
+            //int[][] result = HungarianAlgorithm.hgAlgorithm( matrix, "max" );
+            List<Pair<Integer, Integer>>  result = greedyExtract( matrix, nbClasses1, nbClasses2, threshold);
             System.out.println("\nOK");
-            for( i=0; i < result.length ; i++ ){
-                double val = matrix[result[i][0]][result[i][1]];
-                if( val > threshold ){
-                    addAlignCell(class1o[result[i][0]], class2o[result[i][1]], "=", val );
-                }
-            }
-
-            /*
-            // Match classes
-
-
-            // Match dataProperties
-            for (Object p2 : ontology2().getDataProperties()) {
-                for (Object p1 : ontology1().getDataProperties()) {
-                    // add mapping into alignment object
-                    addAlignCell(p1, p2, "=", match(p1, p2));
-                }
-            }
-            // Match objectProperties
-            for (Object p2 : ontology2().getObjectProperties()) {
-                for (Object p1 : ontology1().getObjectProperties()) {
-                    // add mapping into alignment object
-                    addAlignCell(p1, p2, "=", match(p1, p2));
-                }
-            }
-            */
+            for (Pair<Integer, Integer> item: result)
+                addAlignCell(class1o[item.getL()], class2o[item.getR()], "=", matrix[item.getL()][item.getR()]);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
+    private List<Pair<Integer, Integer>> greedyExtract(double[][] mat, int row, int col) {
+        return greedyExtract(mat, row, col, 0.0);
+    }
+    private List<Pair<Integer, Integer>> greedyExtract(double[][] mat, int row, int col, double threshold) {
+        int maxInd;
+        double maxVal;
+        boolean[] selected = new boolean[col];
+        List<Pair<Integer, Integer>> res = new ArrayList<>();
+        for (int i = 0; i < row; ++i) {
+            maxInd = -1;
+            maxVal = -1;
+            for (int j = 0; j < col; ++j) {
+                if(mat[i][j] > maxVal && !selected[j])
+                {
+                    maxInd = j;
+                    maxVal = mat[i][j];
+                }
+            }
+            if(maxVal != -1 && threshold <= maxVal) {
+                selected[maxInd] = true;
+                res.add(new Pair<>(i, maxInd));
+            }
+        }
+        return res;
+    }
 }

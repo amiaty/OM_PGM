@@ -53,59 +53,102 @@
     <exclude name="**/?*.aj"/>
   </patternset>
   
-  <!-- JDK definitions -->
-  
-  <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
-  <path id="jdk.classpath.1.8">
-    <fileset dir="${jdk.home.1.8}">
-      <include name="jre/lib/charsets.jar"/>
-      <include name="jre/lib/deploy.jar"/>
-      <include name="jre/lib/ext/access-bridge-64.jar"/>
-      <include name="jre/lib/ext/cldrdata.jar"/>
-      <include name="jre/lib/ext/dnsns.jar"/>
-      <include name="jre/lib/ext/jaccess.jar"/>
-      <include name="jre/lib/ext/jfxrt.jar"/>
-      <include name="jre/lib/ext/localedata.jar"/>
-      <include name="jre/lib/ext/nashorn.jar"/>
-      <include name="jre/lib/ext/sunec.jar"/>
-      <include name="jre/lib/ext/sunjce_provider.jar"/>
-      <include name="jre/lib/ext/sunmscapi.jar"/>
-      <include name="jre/lib/ext/sunpkcs11.jar"/>
-      <include name="jre/lib/ext/zipfs.jar"/>
-      <include name="jre/lib/javaws.jar"/>
-      <include name="jre/lib/jce.jar"/>
-      <include name="jre/lib/jfr.jar"/>
-      <include name="jre/lib/jfxswt.jar"/>
-      <include name="jre/lib/jsse.jar"/>
-      <include name="jre/lib/management-agent.jar"/>
-      <include name="jre/lib/plugin.jar"/>
-      <include name="jre/lib/resources.jar"/>
-      <include name="jre/lib/rt.jar"/>
-    </fileset>
-  </path>
-  
-  <property name="project.jdk.home" value="${jdk.home.1.8}"/>
-  <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
-  <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
-  
   
   <!-- Project Libraries -->
-  <!-- Register Custom Compiler Taskdefs -->
-  <property name="javac2.home" value="${idea.home}/lib"/>
-  <path id="javac2.classpath">
-    <pathelement location="${javac2.home}/javac2.jar"/>
-    <pathelement location="${javac2.home}/jdom.jar"/>
-    <pathelement location="${javac2.home}/asm-all.jar"/>
-    <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
-  </path>
-  <target name="register.custom.compilers">
-    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
-    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
-  </target>
   
   <!-- Modules -->
   
-  <import file="${basedir}/module_om_pgm.xml"/>
+  
+  <!-- Module OM_PGM -->
+  
+  <dirname property="module.om_pgm.basedir" file="${ant.file}"/>
+  
+  
+  
+  <property name="compiler.args.om_pgm" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="om_pgm.output.dir" value="${module.om_pgm.basedir}/out/production/OM_PGM"/>
+  <property name="om_pgm.testoutput.dir" value="${module.om_pgm.basedir}/out/test/OM_PGM"/>
+  
+  <path id="om_pgm.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="om_pgm.module.production.classpath">
+    <fileset dir="${basedir}/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  <path id="om_pgm.runtime.production.module.classpath">
+    <pathelement location="${om_pgm.output.dir}"/>
+    <fileset dir="${basedir}/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  <path id="om_pgm.module.classpath">
+    <pathelement location="${om_pgm.output.dir}"/>
+    <fileset dir="${basedir}/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  <path id="om_pgm.runtime.module.classpath">
+    <pathelement location="${om_pgm.testoutput.dir}"/>
+    <pathelement location="${om_pgm.output.dir}"/>
+    <fileset dir="${basedir}/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.om_pgm">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.om_pgm">
+    <patternset refid="excluded.from.module.om_pgm"/>
+  </patternset>
+  
+  <path id="om_pgm.module.sourcepath">
+    <dirset dir="${module.om_pgm.basedir}">
+      <include name="src"/>
+      <include name="res"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.om_pgm" depends="compile.module.om_pgm.production,compile.module.om_pgm.tests" description="Compile module OM_PGM"/>
+  
+  <target name="compile.module.om_pgm.production" description="Compile module OM_PGM; production classes">
+    <mkdir dir="${om_pgm.output.dir}"/>
+    <javac destdir="${om_pgm.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
+      <compilerarg line="${compiler.args.om_pgm}"/>
+      <bootclasspath refid="om_pgm.module.bootclasspath"/>
+      <classpath refid="om_pgm.module.production.classpath"/>
+      <src refid="om_pgm.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.om_pgm"/>
+    </javac>
+    
+    <copy todir="${om_pgm.output.dir}">
+      <fileset dir="${module.om_pgm.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.om_pgm.basedir}/res">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.om_pgm.tests" depends="compile.module.om_pgm.production" description="compile module OM_PGM; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.om_pgm" description="cleanup module">
+    <delete dir="${om_pgm.output.dir}"/>
+    <delete dir="${om_pgm.testoutput.dir}"/>
+  </target>
   
   <target name="init" description="Build initialization">
     <!-- Perform any build initialization in this target -->
