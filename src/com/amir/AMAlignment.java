@@ -17,7 +17,9 @@ import org.semanticweb.owl.align.AlignmentProcess;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.Random;
 
+@SuppressWarnings("Duplicates")
 public class AMAlignment extends DistanceAlignment implements AlignmentProcess {
 
     private HeavyLoadedOntology<Object> heavyOntology1;
@@ -33,49 +35,8 @@ public class AMAlignment extends DistanceAlignment implements AlignmentProcess {
                 && getOntologyObject1() instanceof HeavyLoadedOntology ))
             throw new AlignmentException( "StrucSubsDistAlignment requires HeavyLoadedOntology ontology loader" );
     }
-    @SuppressWarnings("Duplicates")
     public void align(Alignment alignment, Properties param) throws AlignmentException {
         try {
-
-/*
-            // *** Method 1 ***
-            URI url1 = getOntology1URI();
-            URI url2 = getOntology2URI();
-
-            AlignmentProcess  al = new StringDistAlignment();
-            al.init( url1, url2 );
-            Properties properties = new Properties();
-            properties.setProperty( "noinst", "1");
-            properties.setProperty( "type", "11");
-            //stringFunction: subStringDistance, levenshteinDistance,smoaDistance,teinDistance
-            properties.setProperty("stringFunction", "subStringDistance");
-
-            al.align(null, properties);
-            al.harden(0.01);
-
-            for ( Cell c : al ){
-                addAlignCell(c.getObject1AsURI(al), c.getObject2AsURI(al), c.getRelation().getRelation(), c.getStrength());
-            }
-*/
-
-/*
-            // *** Method 2 ***
-            double[][] matrix = new double[ontology1().nbClasses()][ontology2().nbClasses()];
-            double ii = 0;
-            int jj = -1;
-            int nbClass1 = ontology2().nbClasses();
-            double step = 100.0 / nbClass1;
-            StringDistances stringDistances = new StringDistances();
-
-            for (Object cl2 : ontology2().getClasses()) {
-                for (Object cl1 : ontology1().getClasses()) {
-
-                    double distVal = 1 - StringDistances.equalDistance(cl1.toString(), cl2.toString());
-                    if(distVal > 0.1) addAlignCell(cl1, cl2, "=", distVal);
-                }
-                if((ii += step) >= (jj + 1)) System.out.print(String.format("\r%d%% completed!", ++jj));
-            }
-*/
             heavyOntology1 = (HeavyLoadedOntology<Object>)getOntologyObject1();
             heavyOntology2 = (HeavyLoadedOntology<Object>)getOntologyObject2();
 
@@ -114,9 +75,13 @@ public class AMAlignment extends DistanceAlignment implements AlignmentProcess {
                     matrix[i][j] = 1.0 - StringDistances.levenshteinDistance(class1s[i], class2s[j]);
                 if((ii += step) >= (jj + 1)) System.out.print(String.format("\r%d%% completed!", ++jj));
             }
-            double threshold = 0.8;
+            double threshold = 0.7;
             //int[][] result = HungarianAlgorithm.hgAlgorithm( matrix, "max" );
-            List<Pair<Integer, Integer>>  result = greedyExtract( matrix, nbClasses1, nbClasses2, threshold);
+            //List<Pair<Integer, Integer>>  result = greedyExtract( matrix, nbClasses1, nbClasses2, threshold);
+            //List<Pair<Integer, Integer>>  initSol = randomExtract( matrix, nbClasses1, nbClasses2, threshold);
+            SimulatedAnnealing SA = new SimulatedAnnealing(matrix);
+            SA.solve(100);
+            List<Pair<Integer, Integer>>  result = SA.getSolution();
             System.out.println("\nOK");
             for (Pair<Integer, Integer> item: result)
                 addAlignCell(class1o[item.getL()], class2o[item.getR()], "=", matrix[item.getL()][item.getR()]);
@@ -142,7 +107,35 @@ public class AMAlignment extends DistanceAlignment implements AlignmentProcess {
                     maxVal = mat[i][j];
                 }
             }
-            if(maxVal != -1 && threshold <= maxVal) {
+            if(maxInd != -1 && threshold <= maxVal) {
+                selected[maxInd] = true;
+                res.add(new Pair<>(i, maxInd));
+            }
+        }
+        return res;
+    }
+    private List<Pair<Integer, Integer>> randomExtract(double[][] mat, int row, int col, double threshold){
+        List<Integer> visitOrder = new ArrayList<>();
+        for (int i = 0; i < row; ++i) visitOrder.add(i);
+
+        Random random = new Random(System.currentTimeMillis());
+        java.util.Collections.shuffle(visitOrder, random);
+
+        int maxInd;
+        double maxVal;
+        boolean[] selected = new boolean[col];
+        List<Pair<Integer, Integer>> res = new ArrayList<>();
+        for (int i : visitOrder) {
+            maxInd = -1;
+            maxVal = -1;
+            for (int j = 0; j < col; ++j) {
+                if(mat[i][j] > maxVal && !selected[j])
+                {
+                    maxInd = j;
+                    maxVal = mat[i][j];
+                }
+            }
+            if(maxInd != -1 && threshold <= maxVal) {
                 selected[maxInd] = true;
                 res.add(new Pair<>(i, maxInd));
             }
