@@ -72,15 +72,16 @@ public class AMAlignment extends DistanceAlignment implements AlignmentProcess {
 
             for( i = 0; i < nbClasses1; ++i ) {
                 for (j = 0; j < nbClasses2; ++j)
-                    matrix[i][j] = 1.0 - StringDistances.smoaDistance(class1s[i], class2s[j]);
+                    matrix[i][j] = 1.0 - StringDistances.levenshteinDistance(class1s[i], class2s[j]);
                 if((ii += step) >= (jj + 1)) System.out.print(String.format("\r%d%% completed!", ++jj));
             }
             double threshold = 0.7;
             //int[][] result = HungarianAlgorithm.hgAlgorithm( matrix, "max" );
             //List<Pair<Integer, Integer>>  result = greedyExtract( matrix, nbClasses1, nbClasses2, threshold);
             //List<Pair<Integer, Integer>>  initSol = randomExtract( matrix, nbClasses1, nbClasses2, threshold);
-            SimulatedAnnealing SA = new SimulatedAnnealing(matrix);
-            SA.solve(1000);
+            //SimulatedAnnealing SA = new SimulatedAnnealing(matrix);
+            SimulatedAnnealing SA = new SimulatedAnnealing(matrix, heavyOntology1, heavyOntology2, class1o, class2o);
+            SA.solve(800);
             List<Pair<Integer, Integer>>  result = SA.getSolution(threshold);
             System.out.println("\nOK");
             for (Pair<Integer, Integer> item: result)
