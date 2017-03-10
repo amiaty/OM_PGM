@@ -12,7 +12,7 @@ public class SimulatedAnnealing {
     private double[][] similarity;
     private List<Integer> sol;
     private int row, col;
-    private double threshold = 0.01;
+    private double threshold = 0.8;
     public SimulatedAnnealing(double[][] sim){
         similarity = sim;
         row = sim.length;
@@ -24,7 +24,7 @@ public class SimulatedAnnealing {
         List<Integer> next, curr;
         curr = sol;
         for (int t = 0; t < duration; ++t){
-            temperature = duration - t;
+            temperature = duration - t * 0.01;
             next = successor(curr);
             deltaE = getFitness(next) - getFitness(curr);
             if (deltaE > 0){
@@ -37,15 +37,19 @@ public class SimulatedAnnealing {
                     curr = next;
                 }
             }
+            if(t % 50 == 0) System.out.println(t + " : " + getFitness(curr));
         }
         sol = curr;
     }
-    public List<Pair<Integer, Integer>> getSolution() {
+    public List<Pair<Integer, Integer>> getSolution(double thr) {
+        threshold = thr;
         return extractSolution(sol);
     }
     private List<Integer> successor(List<Integer> curr) {
         List<Integer> next = new ArrayList<>(curr);
-
+        int i = (int)(Math.random() * (row - 1));
+        int j = (int)(Math.random() * (row - 1));
+        java.util.Collections.swap(next, i, j);
         return next;
     }
     private double getFitness(List<Integer> S) {
@@ -53,12 +57,13 @@ public class SimulatedAnnealing {
         List<Pair<Integer, Integer>> SS = extractSolution(S);
         for (Pair<Integer, Integer> item: SS)
             sum += similarity[item.getL()][item.getR()];
-        return sum;
+        return sum * 100 + SS.size() * (20 / threshold);
     }
     private List<Integer> generateInitSol(){
         List<Integer> visitOrder = new ArrayList<>();
         for (int i = 0; i < row; ++i) visitOrder.add(i);
-        Random random = new Random(System.currentTimeMillis());
+        //Random random = new Random(System.currentTimeMillis());
+        Random random = new Random(0);
         java.util.Collections.shuffle(visitOrder, random);
         return visitOrder;
     }
