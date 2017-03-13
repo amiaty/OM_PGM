@@ -72,7 +72,7 @@ public class Main {
 
             long startTime = System.currentTimeMillis();
             alignment.align(null, System.getProperties());
-            System.out.println(String.format("\nTime : %d ms", (System.currentTimeMillis() - startTime)));
+            System.out.println(String.format("\nTime : %d sec", (System.currentTimeMillis() - startTime) / 1000));
             System.out.println("Our method nCells: " + alignment.nbCells());
             //matching output
             //OutputStream stream = System.out;

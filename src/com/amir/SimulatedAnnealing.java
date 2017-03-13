@@ -14,11 +14,12 @@ public class SimulatedAnnealing {
     private double[][] similarity;
     private List<Integer> sol;
     private int row, col;
-    private double threshold = 0.5;
+    private double threshold = 0.7;
     private HeavyLoadedOntology<Object> heavyOntology1;
     private HeavyLoadedOntology<Object> heavyOntology2;
     private Object[] class1o;
     private Object[] class2o;
+    private Random random;
 
     public SimulatedAnnealing(double[][] sim, HeavyLoadedOntology<Object> o1, HeavyLoadedOntology<Object> o2, Object [] co1, Object [] co2){
         heavyOntology1 = o1;
@@ -28,28 +29,28 @@ public class SimulatedAnnealing {
         similarity = sim;
         row = sim.length;
         col = sim[0].length;
+        //random = new Random(System.currentTimeMillis());
+        random = new Random(0);
     }
     public void solve(int duration) {
-        double deltaE, temperature;
+        double deltaE, temperature = 1.0, alpha = 0.99;
         sol = generateInitSol();
         List<Integer> next, curr;
         curr = sol;
+
         for (int t = 0; t < duration; ++t){
-            temperature = duration - t * 0.1;
+            temperature = (temperature > 0.00001) ? (temperature * alpha):0.00001;
             next = successor(curr);
             deltaE = getFitness(next) - getFitness(curr);
             if (deltaE > 0){
                 curr = next;
             }
-            else {
-                double p = Math.random();
-                double Prob = Math.exp(deltaE / temperature);
-                if(p >= Prob){
+            else if(random.nextDouble() >= Math.exp(deltaE / temperature)){
                     curr = next;
                 }
-            }
-            if(t % 50 == 0) System.out.println(t + " : " + getFitness(curr));
+            if(t % 50 == 0) System.out.print("\n" + t + "\t: " + getFitness(curr));
         }
+        System.out.println("\n" + "Final temperature : " + temperature);
         sol = curr;
     }
     public List<Pair<Integer, Integer>> getSolution(double thr) {
@@ -58,68 +59,46 @@ public class SimulatedAnnealing {
     }
     private List<Integer> successor(List<Integer> curr) {
         List<Integer> next = new ArrayList<>(curr);
-        int i = (int)(Math.random() * (row - 1));
-        int j = (int)(Math.random() * (row - 1));
+        int i = random.nextInt(row);
+        int j = random.nextInt(row);
         java.util.Collections.swap(next, i, j);
         return next;
     }
     private double getFitness(List<Integer> S) {
-        double sum = 0;
+        double sum2 = 0;
+        double sum3 = 0;
         double reward = 1;
-        double penalty = -1;
         double sum1 = 0;
         List<Pair<Integer, Integer>> SS = extractSolution(S);
         for (Pair<Integer, Integer> item: SS) {
             Set supO1 = ((OWLClassImpl)class1o[item.getL()]).getSuperClasses((OWLOntology) heavyOntology1.getOntology());
             Set supO2 = ((OWLClassImpl)class2o[item.getR()]).getSuperClasses((OWLOntology) heavyOntology2.getOntology());
-            //Iterator itr1 = supO1.iterator();
-            //Iterator itr2 = supO2.iterator();
 
-            for(Iterator itr1 = supO1.iterator(); itr1.hasNext();){
-                Object leftClass = itr1.next();
-                for(Iterator itr2=supO2.iterator();itr2.hasNext();){
-                    Object rightClass = itr2.next();
-                    if (isMatch(leftClass,rightClass,SS) || leftClass == rightClass) {
-                        sum += reward;
+            for (Object leftClass : supO1)
+                for (Object rightClass : supO2)
+                    if (isMatch(leftClass, rightClass, SS) || leftClass == rightClass) {
+                        sum2 += reward;
                         break;
                     }
-                }
-
-            }
 
             Set subO1 = ((OWLClassImpl)class1o[item.getL()]).getSubClasses((OWLOntology) heavyOntology1.getOntology());
             Set subO2 = ((OWLClassImpl)class2o[item.getR()]).getSubClasses((OWLOntology) heavyOntology2.getOntology());
-            //Iterator itr1 = supO1.iterator();
-            //Iterator itr2 = supO2.iterator();
 
-            for(Iterator itr1=subO1.iterator();itr1.hasNext();){
-                Object leftClass = itr1.next();
-                for(Iterator itr2=subO2.iterator();itr2.hasNext();){
-                    Object rightClass = itr2.next();
-                    if (isMatch(leftClass,rightClass,SS) || leftClass == rightClass) {
-                        sum += reward;
+            for (Object leftClass : subO1)
+                for (Object rightClass : subO2)
+                    if (isMatch(leftClass, rightClass, SS) || leftClass == rightClass) {
+                        sum3 += reward;
                         break;
                     }
-                }
 
-            }
-
-            /*  while(itr1.hasNext()){
-                while(itr2.hasNext()){
-                    int x = 0;
-                }
-            }
-            */
             sum1 += similarity[item.getL()][item.getR()];
         }
-        double sum2 = SS.size() * (10 * threshold);
-        return sum1* 50 + sum * 5 + sum2;
+        double sum4 = SS.size() * (10 * threshold);
+        return sum1 * 100 + sum2 * 20 + sum3 * 20 + sum4;
     }
     private List<Integer> generateInitSol(){
         List<Integer> visitOrder = new ArrayList<>();
         for (int i = 0; i < row; ++i) visitOrder.add(i);
-        //Random random = new Random(System.currentTimeMillis());
-        Random random = new Random(0);
         java.util.Collections.shuffle(visitOrder, random);
         return visitOrder;
     }

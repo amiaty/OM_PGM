@@ -31,8 +31,7 @@ public class AMAlignment extends DistanceAlignment implements AlignmentProcess {
 
     public void init(Object o1, Object o2, Object ontologies) throws AlignmentException {
         super.init( o1, o2, ontologies );
-        if ( !( getOntologyObject1() instanceof HeavyLoadedOntology
-                && getOntologyObject1() instanceof HeavyLoadedOntology ))
+        if ( !( getOntologyObject1() instanceof HeavyLoadedOntology  && getOntologyObject1() instanceof HeavyLoadedOntology ))
             throw new AlignmentException( "StrucSubsDistAlignment requires HeavyLoadedOntology ontology loader" );
     }
     public void align(Alignment alignment, Properties param) throws AlignmentException {
@@ -49,7 +48,7 @@ public class AMAlignment extends DistanceAlignment implements AlignmentProcess {
             String[] class1s = new String[nbClasses1];
             String[] class2s = new String[nbClasses2];
             int i = 0;
-            String str1, str2;
+            String str1;
 
             for ( Object ob : getOntologyObject1().getClasses() ) {
                 str1 = heavyOntology1.getEntityAnnotations(ob).iterator().next();
@@ -78,10 +77,8 @@ public class AMAlignment extends DistanceAlignment implements AlignmentProcess {
             double threshold = 0.7;
             //int[][] result = HungarianAlgorithm.hgAlgorithm( matrix, "max" );
             //List<Pair<Integer, Integer>>  result = greedyExtract( matrix, nbClasses1, nbClasses2, threshold);
-            //List<Pair<Integer, Integer>>  initSol = randomExtract( matrix, nbClasses1, nbClasses2, threshold);
-            //SimulatedAnnealing SA = new SimulatedAnnealing(matrix);
             SimulatedAnnealing SA = new SimulatedAnnealing(matrix, heavyOntology1, heavyOntology2, class1o, class2o);
-            SA.solve(800);
+            SA.solve(20);
             List<Pair<Integer, Integer>>  result = SA.getSolution(threshold);
             System.out.println("\nOK");
             for (Pair<Integer, Integer> item: result)
