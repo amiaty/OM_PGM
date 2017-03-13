@@ -78,7 +78,7 @@ public class AMAlignment extends DistanceAlignment implements AlignmentProcess {
             //int[][] result = HungarianAlgorithm.hgAlgorithm( matrix, "max" );
             //List<Pair<Integer, Integer>>  result = greedyExtract( matrix, nbClasses1, nbClasses2, threshold);
             SimulatedAnnealing SA = new SimulatedAnnealing(matrix, heavyOntology1, heavyOntology2, class1o, class2o);
-            SA.solve(20);
+            SA.solve(100);
             List<Pair<Integer, Integer>>  result = SA.getSolution(threshold);
             System.out.println("\nOK");
             for (Pair<Integer, Integer> item: result)

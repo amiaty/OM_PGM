@@ -14,7 +14,7 @@ public class SimulatedAnnealing {
     private double[][] similarity;
     private List<Integer> sol;
     private int row, col;
-    private double threshold = 0.7;
+    private double threshold = 0.6;
     private HeavyLoadedOntology<Object> heavyOntology1;
     private HeavyLoadedOntology<Object> heavyOntology2;
     private Object[] class1o;
@@ -33,25 +33,37 @@ public class SimulatedAnnealing {
         random = new Random(0);
     }
     public void solve(int duration) {
-        double deltaE, temperature = 1.0, alpha = 0.99;
+        double deltaE, temperature = 1.0, alpha = 0.995;
         sol = generateInitSol();
-        List<Integer> next, curr;
-        curr = sol;
-
+        List<Integer> next, curr, best;
+        curr = best = sol;
+        double fitNext, fitCurr = getFitness(curr), fitBest = fitCurr;
         for (int t = 0; t < duration; ++t){
-            temperature = (temperature > 0.00001) ? (temperature * alpha):0.00001;
-            next = successor(curr);
-            deltaE = getFitness(next) - getFitness(curr);
-            if (deltaE > 0){
-                curr = next;
-            }
-            else if(random.nextDouble() >= Math.exp(deltaE / temperature)){
+            curr = best;
+            fitCurr = fitBest;
+            for (int i = 0; i < 20; ++i) {
+                temperature = (temperature > 0.00001) ? (temperature * alpha) : 0.00001;
+                next = successor(curr);
+                fitNext = getFitness(next);
+                deltaE = fitNext - fitCurr;
+                if (deltaE > 0) {
                     curr = next;
+                    fitCurr = fitNext;
+                } else if (random.nextDouble() >= Math.exp(deltaE / temperature)) {
+                    curr = next;
+                    fitCurr = fitNext;
                 }
-            if(t % 50 == 0) System.out.print("\n" + t + "\t: " + getFitness(curr));
+                if(fitBest < fitCurr)
+                {
+                    fitBest = fitCurr;
+                    best = curr;
+                }
+            }
+            //if (true)
+            System.out.print("\n" + t + "\t: " + fitBest);
         }
         System.out.println("\n" + "Final temperature : " + temperature);
-        sol = curr;
+        sol = best;
     }
     public List<Pair<Integer, Integer>> getSolution(double thr) {
         threshold = thr;
@@ -94,7 +106,7 @@ public class SimulatedAnnealing {
             sum1 += similarity[item.getL()][item.getR()];
         }
         double sum4 = SS.size() * (10 * threshold);
-        return sum1 * 100 + sum2 * 20 + sum3 * 20 + sum4;
+        return sum1 * 100 + sum2 * 1 + sum3 * 1 + sum4;
     }
     private List<Integer> generateInitSol(){
         List<Integer> visitOrder = new ArrayList<>();
