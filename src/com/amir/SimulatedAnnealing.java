@@ -14,7 +14,7 @@ public class SimulatedAnnealing {
     private double[][] similarity;
     private List<Integer> sol;
     private int row, col;
-    private double threshold = 0.6;
+    private double threshold = 0.7;
     private HeavyLoadedOntology<Object> heavyOntology1;
     private HeavyLoadedOntology<Object> heavyOntology2;
     private Object[] class1o;
@@ -29,11 +29,11 @@ public class SimulatedAnnealing {
         similarity = sim;
         row = sim.length;
         col = sim[0].length;
-        //random = new Random(System.currentTimeMillis());
-        random = new Random(0);
+        random = new Random(System.currentTimeMillis());
+        //random = new Random(0);
     }
     public void solve(int duration) {
-        double deltaE, temperature = 1.0, alpha = 0.995;
+        double deltaE, temperature = 1.0, alpha = 0.99;
         sol = generateInitSol();
         List<Integer> next, curr, best;
         curr = best = sol;
@@ -41,8 +41,8 @@ public class SimulatedAnnealing {
         for (int t = 0; t < duration; ++t){
             curr = best;
             fitCurr = fitBest;
-            for (int i = 0; i < 20; ++i) {
-                temperature = (temperature > 0.00001) ? (temperature * alpha) : 0.00001;
+            temperature = (temperature > 0.00001) ? (temperature * alpha) : 0.00001;
+            for (int i = 0; i < 50; ++i) {
                 next = successor(curr);
                 fitNext = getFitness(next);
                 deltaE = fitNext - fitCurr;
@@ -106,7 +106,7 @@ public class SimulatedAnnealing {
             sum1 += similarity[item.getL()][item.getR()];
         }
         double sum4 = SS.size() * (10 * threshold);
-        return sum1 * 100 + sum2 * 1 + sum3 * 1 + sum4;
+        return sum1 * 40 + sum2 * 0.1 + sum3 * 0.1 + sum4;
     }
     private List<Integer> generateInitSol(){
         List<Integer> visitOrder = new ArrayList<>();

@@ -20,16 +20,13 @@ import org.slf4j.LoggerFactory;
 import java.io.*;
 
 import java.net.URI;
-import java.util.Properties;
-import java.util.Scanner;
-import java.util.Set;
-import java.util.Vector;
+import java.util.*;
 
 
 import uk.ac.ox.krr.logmap2.LogMap2_RepairFacility;
 import uk.ac.ox.krr.logmap2.mappings.objects.MappingObjectStr;
 import uk.ac.ox.krr.logmap2.oaei.reader.MappingsReaderManager;
-
+@SuppressWarnings("Duplicates")
 public class Main {
     final static Logger logger = LoggerFactory.getLogger(Main.class);
 
@@ -56,6 +53,9 @@ public class Main {
                 testEvaluationPaper();
                 break;
             case 5:
+                testEvaluationPaperNew();
+                break;
+            case 6:
                 repairAlignment();
                 break;
         }
@@ -77,7 +77,7 @@ public class Main {
             //matching output
             //OutputStream stream = System.out;
             OutputStream stream = new FileOutputStream( "./res/anatomy-alignments/OurResult.rdf", false );
-            PrintWriter printWriter = new PrintWriter(new BufferedWriter(new OutputStreamWriter( stream, "UTF-8" )),true);
+            PrintWriter printWriter = new PrintWriter(new BufferedWriter(new OutputStreamWriter( stream, "UTF-8" )),false);
             AlignmentVisitor rendererVisitor = new RDFRendererVisitor(printWriter);
             alignment.render(rendererVisitor);
 
@@ -153,6 +153,41 @@ public class Main {
             PrintStream printStream1 = new PrintStream( new FileOutputStream( "./resultPaper1.txt"  ) );
             Evaluation.evalPaper(algns, ref, methodNames, printStream1);
             PrintStream printStream2 = new PrintStream( new FileOutputStream( "./resultPaper2.txt"  ) );
+            Evaluation.evalPaper2(algns, ref, methodNames, printStream2);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private static void testEvaluationPaperNew() {
+        try {
+
+            URI uri1 = new URI("file:./res/anatomy-onto/mouse.owl");
+            URI uri2 = new URI("file:./res/anatomy-onto/human.owl");
+
+            AlignmentParser alignmentParser = new AlignmentParser(0);
+            Alignment ref = alignmentParser.parse("file:./res/anatomy-onto/reference.rdf");
+            ref.init(uri1, uri2);
+            ref.harden(0.01);
+
+            Vector<Alignment> algns = new Vector<>();
+            Vector<String> methodNames = new Vector<>(Arrays.asList(new String[]{"Levenshtein", "SMOA", "JaroWinkler", "N-gram", "Equal", "Hamming", "Jaro", "NeedlemanWunsch2", "SubString"}));
+            Properties properties = new Properties();
+
+            long startTime = System.currentTimeMillis();
+            for (String method:methodNames)
+            {
+                properties.setProperty("StringDistanceMethod", method);
+                PaperAlignment alignment = new PaperAlignment();
+                alignment.init(uri1, uri2);
+                alignment.align(null, properties);
+                alignment.harden(0.3);
+                algns.add(alignment);
+                System.out.println(String.format("\nTime : %d sec", (System.currentTimeMillis() - startTime) / 1000));
+            }
+
+            PrintStream printStream1 = new PrintStream( new FileOutputStream( "./resultPaperNew1.txt"  ) );
+            Evaluation.evalPaper(algns, ref, methodNames, printStream1);
+            PrintStream printStream2 = new PrintStream( new FileOutputStream( "./resultPaperNew2.txt"  ) );
             Evaluation.evalPaper2(algns, ref, methodNames, printStream2);
         } catch (Exception e) {
             e.printStackTrace();
