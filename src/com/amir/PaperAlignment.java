@@ -10,6 +10,8 @@ import fr.inrialpes.exmo.align.impl.DistanceAlignment;
 import fr.inrialpes.exmo.ontosim.string.StringDistances;
 import fr.inrialpes.exmo.ontosim.util.HungarianAlgorithm;
 import fr.inrialpes.exmo.ontowrap.HeavyLoadedOntology;
+import fr.inrialpes.exmo.ontowrap.LoadedOntology;
+import fr.inrialpes.exmo.ontowrap.Ontology;
 import org.semanticweb.owl.align.Alignment;
 import org.semanticweb.owl.align.AlignmentException;
 import org.semanticweb.owl.align.AlignmentProcess;
@@ -22,8 +24,8 @@ import java.util.Random;
 @SuppressWarnings("Duplicates")
 public class PaperAlignment extends DistanceAlignment implements AlignmentProcess {
 
-    private HeavyLoadedOntology<Object> heavyOntology1;
-    private HeavyLoadedOntology<Object> heavyOntology2;
+    private LoadedOntology<Object> heavyOntology1;
+    private LoadedOntology<Object> heavyOntology2;
     public PaperAlignment() {
         heavyOntology1 = heavyOntology2 = null;
         setType("**");
@@ -31,13 +33,11 @@ public class PaperAlignment extends DistanceAlignment implements AlignmentProces
 
     public void init(Object o1, Object o2, Object ontologies) throws AlignmentException {
         super.init( o1, o2, ontologies );
-        if ( !( getOntologyObject1() instanceof HeavyLoadedOntology  && getOntologyObject1() instanceof HeavyLoadedOntology ))
-            throw new AlignmentException( "PaperAlignment requires HeavyLoadedOntology ontology loader" );
     }
     public void align(Alignment alignment, Properties param) throws AlignmentException {
         try {
-            heavyOntology1 = (HeavyLoadedOntology<Object>)getOntologyObject1();
-            heavyOntology2 = (HeavyLoadedOntology<Object>)getOntologyObject2();
+            heavyOntology1 = getOntologyObject1();
+            heavyOntology2 = getOntologyObject2();
 
             int nbClasses1 = heavyOntology1.nbClasses();
             int nbClasses2 = heavyOntology2.nbClasses();
@@ -136,12 +136,49 @@ public class PaperAlignment extends DistanceAlignment implements AlignmentProces
                 }
                 if((ii += step) >= (jj + 1)) System.out.print(String.format("\r%d%% completed!", ++jj));
             }
-            int[][] result = callHungarianMethod(matrix, nbClasses1, nbClasses2);
-            //int[][] result = HungarianAlgorithm.hgAlgorithm( matrix, "max" );
+            //int[][] result = callHungarianMethod(matrix, nbClasses1, nbClasses2);
+            int[][] result = HungarianAlgorithm.hgAlgorithm( matrix, "max" );
+            //List<Pair<Integer, Integer>>  result = greedyExtract( matrix, nbClasses1, nbClasses2);
+            /*System.out.println("\nOK");
+            for (Pair<Integer, Integer> item: result)
+                if(matrix[item.getL()][item.getR()] <= 1.0)
+                    addAlignCell(class1o[item.getL()], class2o[item.getR()], "=", matrix[item.getL()][item.getR()]);
+                else
+                    addAlignCell(class1o[item.getL()], class2o[item.getR()], "=", 1);
+            */
             for (i = 0; i < result.length ; ++i)
-                addAlignCell(class1o[result[i][0]], class2o[result[i][1]], "=", matrix[result[i][0]][result[i][1]]);
+                if (matrix[result[i][0]][result[i][1]] <= 1.0)
+                    addAlignCell(class1o[result[i][0]], class2o[result[i][1]], "=", matrix[result[i][0]][result[i][1]]);
+                else
+                    addAlignCell(class1o[result[i][0]], class2o[result[i][1]], "=", 1.0);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+    }
+    private List<Pair<Integer, Integer>> greedyExtract(double[][] mat, int row, int col) {
+        return greedyExtract(mat, row, col, 0.0);
+    }
+    private List<Pair<Integer, Integer>> greedyExtract(double[][] mat, int row, int col, double threshold) {
+        int maxInd;
+        double maxVal;
+        boolean[] selected = new boolean[col];
+        List<Pair<Integer, Integer>> res = new ArrayList<>();
+        for (int i = 0; i < row; ++i) {
+            maxInd = -1;
+            maxVal = -1;
+            for (int j = 0; j < col; ++j) {
+                if(mat[i][j] > maxVal && !selected[j])
+                {
+                    maxInd = j;
+                    maxVal = mat[i][j];
+                }
+            }
+            if(maxInd != -1 && threshold <= maxVal) {
+                selected[maxInd] = true;
+                res.add(new Pair<>(i, maxInd));
+            }
+        }
+        return res;
     }
 }

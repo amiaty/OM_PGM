@@ -94,7 +94,7 @@ public class Main {
 
             //print eval res
             OutputStream stream1 = System.out;
-            PrintWriter printWriter1 = new PrintWriter(new BufferedWriter(new OutputStreamWriter( stream1, "UTF-8" )),true);
+            PrintWriter printWriter1 = new PrintWriter(new BufferedWriter(new OutputStreamWriter( stream1, "UTF-8" )),false);
             evaluator.write(printWriter1);
             printWriter1.flush();
             printWriter1.close();
@@ -132,7 +132,7 @@ public class Main {
             URI uri1 = new URI("file:./res/anatomy-onto/mouse.owl");
             URI uri2 = new URI("file:./res/anatomy-onto/human.owl");
 
-            File[] dir = (new File("res/anatomy-alignments")).listFiles();
+            File[] dir = (new File("res/anatomy-alignments-new")).listFiles();
             assert dir != null;
             System.out.println("Number of file(s): " + dir.length);
             AlignmentParser alignmentParser = new AlignmentParser(0);
@@ -169,7 +169,6 @@ public class Main {
             ref.init(uri1, uri2);
             ref.harden(0.01);
 
-            Vector<Alignment> algns = new Vector<>();
             Vector<String> methodNames = new Vector<>(Arrays.asList(new String[]{"Levenshtein", "SMOA", "JaroWinkler", "N-gram", "Equal", "Hamming", "Jaro", "NeedlemanWunsch2", "SubString"}));
             Properties properties = new Properties();
 
@@ -180,15 +179,15 @@ public class Main {
                 PaperAlignment alignment = new PaperAlignment();
                 alignment.init(uri1, uri2);
                 alignment.align(null, properties);
-                alignment.harden(0.3);
-                algns.add(alignment);
-                System.out.println(String.format("\nTime : %d sec", (System.currentTimeMillis() - startTime) / 1000));
+                alignment.harden(0.01);
+                System.out.println(String.format("\nTime : %d min", (System.currentTimeMillis() - startTime) / 60000));
+                OutputStream stream = new FileOutputStream( "./res/anatomy-alignments-new/" + method + ".rdf", false );
+                PrintWriter printWriter = new PrintWriter(new BufferedWriter(new OutputStreamWriter( stream, "UTF-8" )),false);
+                AlignmentVisitor rendererVisitor = new RDFRendererVisitor(printWriter);
+                alignment.render(rendererVisitor);
+                printWriter.flush();
+                printWriter.close();
             }
-
-            PrintStream printStream1 = new PrintStream( new FileOutputStream( "./resultPaperNew1.txt"  ) );
-            Evaluation.evalPaper(algns, ref, methodNames, printStream1);
-            PrintStream printStream2 = new PrintStream( new FileOutputStream( "./resultPaperNew2.txt"  ) );
-            Evaluation.evalPaper2(algns, ref, methodNames, printStream2);
         } catch (Exception e) {
             e.printStackTrace();
         }
