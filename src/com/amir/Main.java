@@ -147,7 +147,7 @@ public class Main {
                 methodNames.add(file.getName().replaceFirst("[.][^.]+$", ""));
                 Alignment al = alignmentParser.parse(file.toURI());
                 al.init(uri1, uri2);
-                al.harden(0.01);
+                al.harden(0.3);
                 algns.add(al);
             }
             PrintStream printStream1 = new PrintStream( new FileOutputStream( "./resultPaper1.txt"  ) );

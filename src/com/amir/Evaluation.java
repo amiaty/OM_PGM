@@ -120,21 +120,7 @@ public class Evaluation {
                     n10[i][j] = ans.nbCells() + ans2.nbCells();
                 }
             }
-/*
-            for (int i = 0; i < NumberOfAlgorithms; ++i) {
-                Alignment first = result.get(i);
-                for (int j = i; j < NumberOfAlgorithms; ++j) {
-                    Alignment second = result.get(j);
-                    Alignment ans = ref.diff(first);
-                    ans = ans.diff(second);
-                    n00[j][i] = n00[i][j] = ans.nbCells();
 
-                    ans = ref.meet(first);
-                    ans = ans.meet(second);
-                    n11[j][i] = n11[i][j] = ans.nbCells();
-                }
-            }
-*/
             // Printing
             String nameMethods = String.format("%12s", mNames.get(0));
             for (int i = 1; i < NumberOfAlgorithms; ++i) {
@@ -144,17 +130,11 @@ public class Evaluation {
             writer.println("n10 & n01 = \n");
             writer.println(nameMethods);
             writer.println(getTableContents(n10));
-/*
-            writer.println("\nn11 = \n");
-            writer.println(nameMethods);
-            writer.println(getTableContents(n11));
 
-            writer.println("\nn00 = \n");
-            writer.println(nameMethods);
-            writer.println(getTableContents(n00));
-            */
+            PrintStream printStream = new PrintStream( new FileOutputStream( "./resultPaper2.tex"  ) );
+            printMatrix(mNames, n10, printStream);
 
-        } catch (AlignmentException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
