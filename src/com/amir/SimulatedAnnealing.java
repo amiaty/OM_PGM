@@ -14,7 +14,7 @@ public class SimulatedAnnealing {
     private double[][] similarity;
     private List<Integer> sol;
     private int row, col;
-    private double threshold = 0.7;
+    private double threshold = 0.75;
     private HeavyLoadedOntology<Object> heavyOntology1;
     private HeavyLoadedOntology<Object> heavyOntology2;
     private Object[] class1o;
@@ -29,11 +29,11 @@ public class SimulatedAnnealing {
         similarity = sim;
         row = sim.length;
         col = sim[0].length;
-        random = new Random(System.currentTimeMillis());
-        //random = new Random(0);
+        //random = new Random(System.currentTimeMillis());
+        random = new Random(0);
     }
     public void solve(int duration) {
-        double deltaE, temperature = 1.0, alpha = 0.99;
+        double deltaE, temperature = 1.0, alpha = 0.999;
         sol = generateInitSol();
         List<Integer> next, curr, best;
         curr = best = sol;
@@ -59,7 +59,6 @@ public class SimulatedAnnealing {
                     best = curr;
                 }
             }
-            //if (true)
             System.out.print("\n" + t + "\t: " + fitBest);
         }
         System.out.println("\n" + "Final temperature : " + temperature);
@@ -69,11 +68,20 @@ public class SimulatedAnnealing {
         threshold = thr;
         return extractSolution(sol);
     }
-    private List<Integer> successor(List<Integer> curr) {
+    private List<Integer> successor2(List<Integer> curr) {
+
         List<Integer> next = new ArrayList<>(curr);
         int i = random.nextInt(row);
         int j = random.nextInt(row);
         java.util.Collections.swap(next, i, j);
+        return next;
+    }
+    private List<Integer> successor(List<Integer> curr) {
+        int batchSz = 6;
+        int[] randInx = random.ints(1, row).distinct().limit(batchSz).toArray();
+        List<Integer> next = new ArrayList<>(curr);
+        for (int i = 0; i < batchSz; i += 2)
+            java.util.Collections.swap(next, randInx[i], randInx[i + 1]);
         return next;
     }
     private double getFitness(List<Integer> S) {
@@ -83,6 +91,7 @@ public class SimulatedAnnealing {
         double sum1 = 0;
         List<Pair<Integer, Integer>> SS = extractSolution(S);
         for (Pair<Integer, Integer> item: SS) {
+/*
             Set supO1 = ((OWLClassImpl)class1o[item.getL()]).getSuperClasses((OWLOntology) heavyOntology1.getOntology());
             Set supO2 = ((OWLClassImpl)class2o[item.getR()]).getSuperClasses((OWLOntology) heavyOntology2.getOntology());
 
@@ -102,11 +111,11 @@ public class SimulatedAnnealing {
                         sum3 += reward;
                         break;
                     }
-
+*/
             sum1 += similarity[item.getL()][item.getR()];
         }
-        double sum4 = SS.size() * (10 * threshold);
-        return sum1 * 40 + sum2 * 0.1 + sum3 * 0.1 + sum4;
+        double sum4 = SS.size() * (0 * threshold);
+        return sum1 * 50000/SS.size() + sum2 * 0 + sum3 * 0 + sum4;
     }
     private List<Integer> generateInitSol(){
         List<Integer> visitOrder = new ArrayList<>();

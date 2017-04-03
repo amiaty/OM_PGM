@@ -53,7 +53,7 @@ public class AMAlignment extends DistanceAlignment implements AlignmentProcess {
             for ( Object ob : getOntologyObject1().getClasses() ) {
                 str1 = heavyOntology1.getEntityAnnotations(ob).iterator().next();
                 //str2 = heavyOntology1.getEntityName(ob);
-                class1s[i] = str1.trim().toLowerCase();
+                class1s[i] = str1.trim().replaceAll("_", " ").toLowerCase();
                 class1o[i++] = ob;
             }
 
@@ -61,7 +61,7 @@ public class AMAlignment extends DistanceAlignment implements AlignmentProcess {
             for ( Object ob : getOntologyObject2().getClasses() ) {
                 str1 = heavyOntology2.getEntityAnnotations(ob).iterator().next();
                 //str2 = heavyOntology2.getEntityName(ob);
-                class2s[j] = str1.trim().toLowerCase();
+                class2s[j] = str1.trim().replaceAll("_", " ").toLowerCase();
                 class2o[j++] = ob;
             }
 
@@ -70,19 +70,21 @@ public class AMAlignment extends DistanceAlignment implements AlignmentProcess {
             double step = 100.0 / nbClasses1;
 
             for( i = 0; i < nbClasses1; ++i ) {
-                for (j = 0; j < nbClasses2; ++j)
+                for (j = 0; j < nbClasses2; ++j) {
                     matrix[i][j] = 1.0 - StringDistances.levenshteinDistance(class1s[i], class2s[j]);
+                }
                 if((ii += step) >= (jj + 1)) System.out.print(String.format("\r%d%% completed!", ++jj));
             }
-            double threshold = 0.7;
+            double threshold = 0.75;
             //int[][] result = HungarianAlgorithm.hgAlgorithm( matrix, "max" );
             //List<Pair<Integer, Integer>>  result = greedyExtract( matrix, nbClasses1, nbClasses2, threshold);
             SimulatedAnnealing SA = new SimulatedAnnealing(matrix, heavyOntology1, heavyOntology2, class1o, class2o);
-            SA.solve(200);
-            List<Pair<Integer, Integer>>  result = SA.getSolution(threshold);
+            SA.solve(500);
+            List<Pair<Integer, Integer>>  result = SA.getSolution(0.75);
             System.out.println("\nOK");
             for (Pair<Integer, Integer> item: result)
-                addAlignCell(class1o[item.getL()], class2o[item.getR()], "=", matrix[item.getL()][item.getR()]);
+                if (matrix[item.getL()][item.getR()] >= threshold)
+                    addAlignCell(class1o[item.getL()], class2o[item.getR()], "=", matrix[item.getL()][item.getR()]);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -139,5 +141,24 @@ public class AMAlignment extends DistanceAlignment implements AlignmentProcess {
             }
         }
         return res;
+    }
+
+    private double ngramDistance1(String s, String t) {
+        int n = 3; // tri-grams for the moment
+        if (s == null || t == null) {
+            //throw new IllegalArgumentException("Strings must not be null");
+            return 1.;
+        }
+        int l1 = s.length()-n+1;
+        int l2 = t.length()-n+1;
+        int found = 0;
+        for( int i=0; i < l1 ; i++ ){
+            for( int j=0; j < l2; j++){
+                int k = 0;
+                for( ; ( k < n ) && ( s.charAt(i+k) == t.charAt(j+k) ); k++);
+                if ( k == n ) found++;
+            }
+        }
+        return 1.0 - (2*((double)found)/((double)(l1+l2)));
     }
 }
