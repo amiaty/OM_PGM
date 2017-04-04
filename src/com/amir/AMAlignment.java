@@ -80,19 +80,23 @@ public class AMAlignment extends DistanceAlignment implements AlignmentProcess {
 
             List<Set> supO1 = new ArrayList<>(nbClasses1);
             List<Set> supO2 = new ArrayList<>(nbClasses2);
+            List<Set> subO1 = new ArrayList<>(nbClasses1);
+            List<Set> subO2 = new ArrayList<>(nbClasses2);
             for( i = 0; i < nbClasses1; ++i ) {
                 supO1.add(((OWLClassImpl)class1o[i]).getSuperClasses((OWLOntology) heavyOntology1.getOntology()));
+                subO1.add(((OWLClassImpl)class1o[i]).getSubClasses((OWLOntology) heavyOntology1.getOntology()));
             }
             for( i = 0; i < nbClasses2; ++i ) {
                 supO2.add(((OWLClassImpl)class2o[i]).getSuperClasses((OWLOntology) heavyOntology2.getOntology()));
+                subO2.add(((OWLClassImpl)class2o[i]).getSubClasses((OWLOntology) heavyOntology2.getOntology()));
             }
 
             System.out.println("\nRunning SA:");
             double threshold = 0.75;
             //int[][] result = HungarianAlgorithm.hgAlgorithm( matrix, "max" );
             //List<Pair<Integer, Integer>>  result = greedyExtract( matrix, nbClasses1, nbClasses2, threshold);
-            SimulatedAnnealing SA = new SimulatedAnnealing(matrix, supO1, supO2, class1o, class2o);
-            SA.solve(500);
+            SimulatedAnnealing SA = new SimulatedAnnealing(matrix, supO1, supO2, subO1, subO2, class1o, class2o);
+            SA.solve(1);
             List<Pair<Integer, Integer>>  result = SA.getSolution();
             System.out.println("\nSA finished.");
             for (Pair<Integer, Integer> item: result)
