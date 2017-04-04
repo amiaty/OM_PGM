@@ -13,11 +13,10 @@ import fr.inrialpes.exmo.ontowrap.HeavyLoadedOntology;
 import org.semanticweb.owl.align.Alignment;
 import org.semanticweb.owl.align.AlignmentException;
 import org.semanticweb.owl.align.AlignmentProcess;
+import org.semanticweb.owlapi.model.OWLOntology;
+import uk.ac.manchester.cs.owl.owlapi.OWLClassImpl;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
-import java.util.Random;
+import java.util.*;
 
 @SuppressWarnings("Duplicates")
 public class AMAlignment extends DistanceAlignment implements AlignmentProcess {
@@ -60,28 +59,42 @@ public class AMAlignment extends DistanceAlignment implements AlignmentProcess {
             int j = 0;
             for ( Object ob : getOntologyObject2().getClasses() ) {
                 str1 = heavyOntology2.getEntityAnnotations(ob).iterator().next();
-                //str2 = heavyOntology2.getEntityName(ob);
                 class2s[j] = str1.trim().replaceAll("_", " ").toLowerCase();
                 class2o[j++] = ob;
             }
 
-            double ii = 0;
+            double ii = 0, m1, m2;
             int jj = -1;
             double step = 100.0 / nbClasses1;
 
+            System.out.println("Preparing:");
+            // make similarity matrix
             for( i = 0; i < nbClasses1; ++i ) {
                 for (j = 0; j < nbClasses2; ++j) {
-                    matrix[i][j] = 1.0 - StringDistances.levenshteinDistance(class1s[i], class2s[j]);
+                    m1 = 1.0 - StringDistances.levenshteinDistance(class1s[i], class2s[j]);
+                    m2 = 1.0 - StringDistances.needlemanWunsch2Distance(class1s[i], class2s[j]);
+                    matrix[i][j] = Math.max(m1, m2);
                 }
                 if((ii += step) >= (jj + 1)) System.out.print(String.format("\r%d%% completed!", ++jj));
             }
+
+            List<Set> supO1 = new ArrayList<>(nbClasses1);
+            List<Set> supO2 = new ArrayList<>(nbClasses2);
+            for( i = 0; i < nbClasses1; ++i ) {
+                supO1.add(((OWLClassImpl)class1o[i]).getSuperClasses((OWLOntology) heavyOntology1.getOntology()));
+            }
+            for( i = 0; i < nbClasses2; ++i ) {
+                supO2.add(((OWLClassImpl)class2o[i]).getSuperClasses((OWLOntology) heavyOntology2.getOntology()));
+            }
+
+            System.out.println("\nRunning SA:");
             double threshold = 0.75;
             //int[][] result = HungarianAlgorithm.hgAlgorithm( matrix, "max" );
             //List<Pair<Integer, Integer>>  result = greedyExtract( matrix, nbClasses1, nbClasses2, threshold);
-            SimulatedAnnealing SA = new SimulatedAnnealing(matrix, heavyOntology1, heavyOntology2, class1o, class2o);
+            SimulatedAnnealing SA = new SimulatedAnnealing(matrix, supO1, supO2, class1o, class2o);
             SA.solve(500);
-            List<Pair<Integer, Integer>>  result = SA.getSolution(0.75);
-            System.out.println("\nOK");
+            List<Pair<Integer, Integer>>  result = SA.getSolution();
+            System.out.println("\nSA finished.");
             for (Pair<Integer, Integer> item: result)
                 if (matrix[item.getL()][item.getR()] >= threshold)
                     addAlignCell(class1o[item.getL()], class2o[item.getR()], "=", matrix[item.getL()][item.getR()]);

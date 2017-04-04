@@ -1,10 +1,7 @@
 package com.amir;
 
-import fr.inrialpes.exmo.ontowrap.HeavyLoadedOntology;
-import org.semanticweb.owlapi.model.OWLOntology;
-import uk.ac.manchester.cs.owl.owlapi.OWLClassImpl;
-
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by Amir on 06/03/2017.
@@ -15,15 +12,15 @@ public class SimulatedAnnealing {
     private List<Integer> sol;
     private int row, col;
     private double threshold = 0.75;
-    private HeavyLoadedOntology<Object> heavyOntology1;
-    private HeavyLoadedOntology<Object> heavyOntology2;
+    private List<Set> supO1;
+    private List<Set> supO2;
     private Object[] class1o;
     private Object[] class2o;
     private Random random;
 
-    public SimulatedAnnealing(double[][] sim, HeavyLoadedOntology<Object> o1, HeavyLoadedOntology<Object> o2, Object [] co1, Object [] co2){
-        heavyOntology1 = o1;
-        heavyOntology2 = o2;
+    public SimulatedAnnealing(double[][] sim, List<Set> s1, List<Set> s2, Object [] co1, Object [] co2){
+        supO1 = s1;
+        supO2 = s2;
         class1o = co1;
         class2o = co2;
         similarity = sim;
@@ -41,7 +38,6 @@ public class SimulatedAnnealing {
         for (int t = 0; t < duration; ++t){
             curr = best;
             fitCurr = fitBest;
-            temperature = (temperature > 0.00001) ? (temperature * alpha) : 0.00001;
             for (int i = 0; i < 50; ++i) {
                 next = successor(curr);
                 fitNext = getFitness(next);
@@ -59,69 +55,50 @@ public class SimulatedAnnealing {
                     best = curr;
                 }
             }
-            System.out.print("\n" + t + "\t: " + fitBest);
+            temperature = (temperature > 0.00001) ? (temperature * alpha) : 0.00001;
+            System.out.print("\n" + (t + 1) + "\t: " + fitBest);
         }
         System.out.println("\n" + "Final temperature : " + temperature);
         sol = best;
     }
-    public List<Pair<Integer, Integer>> getSolution(double thr) {
-        threshold = thr;
+    public List<Pair<Integer, Integer>> getSolution() {
         return extractSolution(sol);
     }
-    private List<Integer> successor2(List<Integer> curr) {
-
-        List<Integer> next = new ArrayList<>(curr);
-        int i = random.nextInt(row);
-        int j = random.nextInt(row);
-        java.util.Collections.swap(next, i, j);
-        return next;
-    }
-    private List<Integer> successor(List<Integer> curr) {
-        int batchSz = 6;
-        int[] randInx = random.ints(1, row).distinct().limit(batchSz).toArray();
+    private List<Integer> successor(final List<Integer> curr) {
+        int batchSz = 8;
+        int[] randInx = random.ints(0, row).distinct().limit(batchSz).toArray();
         List<Integer> next = new ArrayList<>(curr);
         for (int i = 0; i < batchSz; i += 2)
             java.util.Collections.swap(next, randInx[i], randInx[i + 1]);
         return next;
     }
     private double getFitness(List<Integer> S) {
-        double sum2 = 0;
-        double sum3 = 0;
-        double reward = 1;
-        double sum1 = 0;
+        double sum2 = 0, sum3 = 0;
+        double reward = 1, sum1 = 0;
         List<Pair<Integer, Integer>> SS = extractSolution(S);
         for (Pair<Integer, Integer> item: SS) {
-/*
-            Set supO1 = ((OWLClassImpl)class1o[item.getL()]).getSuperClasses((OWLOntology) heavyOntology1.getOntology());
-            Set supO2 = ((OWLClassImpl)class2o[item.getR()]).getSuperClasses((OWLOntology) heavyOntology2.getOntology());
 
-            for (Object leftClass : supO1)
-                for (Object rightClass : supO2)
+            for (Object leftClass : supO1.get(item.getL()))
+                for (Object rightClass : supO2.get(item.getR()))
                     if (isMatch(leftClass, rightClass, SS) || leftClass == rightClass) {
                         sum2 += reward;
                         break;
                     }
 
-            Set subO1 = ((OWLClassImpl)class1o[item.getL()]).getSubClasses((OWLOntology) heavyOntology1.getOntology());
-            Set subO2 = ((OWLClassImpl)class2o[item.getR()]).getSubClasses((OWLOntology) heavyOntology2.getOntology());
-
-            for (Object leftClass : subO1)
-                for (Object rightClass : subO2)
+            for (Object leftClass : supO1.get(item.getL()))
+                for (Object rightClass : supO2.get(item.getR()))
                     if (isMatch(leftClass, rightClass, SS) || leftClass == rightClass) {
                         sum3 += reward;
                         break;
                     }
-*/
+
             sum1 += similarity[item.getL()][item.getR()];
         }
-        double sum4 = SS.size() * (0 * threshold);
-        return sum1 * 50000/SS.size() + sum2 * 0 + sum3 * 0 + sum4;
+        double sum4 = threshold * 10000 / SS.size();
+        return sum1 * 50 + sum2 * 10000 + sum3 * 10000 + sum4;
     }
     private List<Integer> generateInitSol(){
-        List<Integer> visitOrder = new ArrayList<>();
-        for (int i = 0; i < row; ++i) visitOrder.add(i);
-        java.util.Collections.shuffle(visitOrder, random);
-        return visitOrder;
+        return random.ints(0, row).distinct().limit(row).boxed().collect(Collectors.toCollection(ArrayList::new));
     }
     private List<Pair<Integer, Integer>> extractSolution(List<Integer> visitOrder){
 
@@ -139,7 +116,7 @@ public class SimulatedAnnealing {
                     maxVal = similarity[i][j];
                 }
             }
-            if(maxInd != -1 && threshold <= maxVal) {
+            if(threshold <= maxVal) {
                 selected[maxInd] = true;
                 res.add(new Pair<>(i, maxInd));
             }
