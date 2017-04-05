@@ -7,7 +7,6 @@
  *
  */
 package com.amir;
-
 import fr.inrialpes.exmo.align.ling.JWNLAlignment;
 
 import org.semanticweb.owl.align.AlignmentException;

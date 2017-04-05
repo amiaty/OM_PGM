@@ -11,7 +11,7 @@ public class SimulatedAnnealing {
     private double[][] similarity;
     private List<Integer> sol;
     private int row, col;
-    private double threshold = 0.1;
+    private double threshold = 0.8;
     private List<Set> supO1;
     private List<Set> supO2;
     private List<Set> subO1;
@@ -34,7 +34,7 @@ public class SimulatedAnnealing {
         random = new Random(0);
     }
     public void solve(int duration) {
-        double deltaE, temperature = 1.0, alpha = 0.999;
+        double deltaE, temperature = 1.0, alpha = 0.9999;
         sol = generateInitSol();
         List<Integer> next, curr, best;
         curr = best = sol;
@@ -42,7 +42,7 @@ public class SimulatedAnnealing {
         for (int t = 0; t < duration; ++t){
             curr = best;
             fitCurr = fitBest;
-            for (int i = 0; i < 50; ++i) {
+            for (int i = 0; i < 5; ++i) {
                 next = successor(curr);
                 fitNext = getFitness(next);
                 deltaE = fitNext - fitCurr;
@@ -69,7 +69,7 @@ public class SimulatedAnnealing {
         return extractSolution(sol);
     }
     private List<Integer> successor(final List<Integer> curr) {
-        int batchSz = 8;
+        int batchSz = 4;
         int[] randInx = random.ints(0, row).distinct().limit(batchSz).toArray();
         List<Integer> next = new ArrayList<>(curr);
         for (int i = 0; i < batchSz; i += 2)
@@ -81,14 +81,14 @@ public class SimulatedAnnealing {
         double reward = 1, sum1 = 0;
         List<Pair<Integer, Integer>> SS = extractSolution(S);
         for (Pair<Integer, Integer> item: SS) {
-
+/*
             for (Object leftClass : supO1.get(item.getL()))
                 for (Object rightClass : supO2.get(item.getR()))
                     if (isMatch(leftClass, rightClass, SS) || leftClass == rightClass) {
                         sum2 += reward;
                         break;
                     }
-/*
+
             for (Object leftClass : subO1.get(item.getL()))
                 for (Object rightClass : subO2.get(item.getR()))
                     if (isMatch(leftClass, rightClass, SS) || leftClass == rightClass) {
@@ -99,7 +99,7 @@ public class SimulatedAnnealing {
             sum1 += similarity[item.getL()][item.getR()];
         }
         double sum4 = threshold * 0 / SS.size();
-        return sum1 * 0 + sum2 * 10000 + sum3 * 10000 + sum4;
+        return sum1 * 100 + sum2 * 10000 + sum3 * 10000 + sum4;
     }
     private List<Integer> generateInitSol(){
         return random.ints(0, row).distinct().limit(row).boxed().collect(Collectors.toCollection(ArrayList::new));

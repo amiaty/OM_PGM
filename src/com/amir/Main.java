@@ -1,5 +1,5 @@
 package com.amir;
-
+import fr.inrialpes.exmo.ontosim.string.JWNLDistances;
 import fr.inrialpes.exmo.align.impl.BasicAlignment;
 import fr.inrialpes.exmo.align.impl.eval.PRecEvaluator;
 import fr.inrialpes.exmo.align.impl.renderer.HTMLRendererVisitor;
@@ -57,6 +57,9 @@ public class Main {
                 break;
             case 6:
                 repairAlignment();
+                break;
+            case 9:
+                testJWNL();
                 break;
         }
     }
@@ -288,5 +291,13 @@ public class Main {
             logger.debug(e.getMessage());
         }
     }
-
+    private static void testJWNL()
+    {
+        JWNLDistances Dist = new JWNLDistances();
+        Dist.Initialize("./dict", "3.1");
+        System.out.println(Dist.computeSimilarity("blue", "sky"));
+        System.out.println(Dist.basicSynonymDistance("good", "good"));
+        System.out.println(Dist.wuPalmerSimilarity("blue", "sky"));
+        System.out.println(Dist.cosynonymySimilarity("blue", "bag"));
+    }
 }

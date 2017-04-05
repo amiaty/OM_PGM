@@ -71,17 +71,17 @@ public class AMAlignment extends DistanceAlignment implements AlignmentProcess {
             // make similarity matrix
             for( i = 0; i < nbClasses1; ++i ) {
                 for (j = 0; j < nbClasses2; ++j) {
-                    m1 = 1.0 - StringDistances.levenshteinDistance(class1s[i], class2s[j]);
-                    m2 = 1.0 - StringDistances.needlemanWunsch2Distance(class1s[i], class2s[j]);
-                    matrix[i][j] = Math.max(m1, m2);
+                    //m1 = 1.0 - StringDistances.levenshteinDistance(class1s[i], class2s[j]);
+                    m2 = 1.0 - StringDistances.ngramDistance(class1s[i], class2s[j]);
+                    matrix[i][j] = Math.min(1.0, m2);
                 }
                 if((ii += step) >= (jj + 1)) System.out.print(String.format("\r%d%% completed!", ++jj));
             }
 
-            List<Set> supO1 = new ArrayList<>(nbClasses1);
-            List<Set> supO2 = new ArrayList<>(nbClasses2);
-            List<Set> subO1 = new ArrayList<>(nbClasses1);
-            List<Set> subO2 = new ArrayList<>(nbClasses2);
+            List<Set> supO1 = new ArrayList<>();
+            List<Set> supO2 = new ArrayList<>();
+            List<Set> subO1 = new ArrayList<>();
+            List<Set> subO2 = new ArrayList<>();
             for( i = 0; i < nbClasses1; ++i ) {
                 supO1.add(((OWLClassImpl)class1o[i]).getSuperClasses((OWLOntology) heavyOntology1.getOntology()));
                 subO1.add(((OWLClassImpl)class1o[i]).getSubClasses((OWLOntology) heavyOntology1.getOntology()));
@@ -96,7 +96,7 @@ public class AMAlignment extends DistanceAlignment implements AlignmentProcess {
             //int[][] result = HungarianAlgorithm.hgAlgorithm( matrix, "max" );
             //List<Pair<Integer, Integer>>  result = greedyExtract( matrix, nbClasses1, nbClasses2, threshold);
             SimulatedAnnealing SA = new SimulatedAnnealing(matrix, supO1, supO2, subO1, subO2, class1o, class2o);
-            SA.solve(1);
+            SA.solve(1000);
             List<Pair<Integer, Integer>>  result = SA.getSolution();
             System.out.println("\nSA finished.");
             for (Pair<Integer, Integer> item: result)
