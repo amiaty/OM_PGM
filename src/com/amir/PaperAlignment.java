@@ -9,9 +9,7 @@ package com.amir;
 import fr.inrialpes.exmo.align.impl.DistanceAlignment;
 import fr.inrialpes.exmo.ontosim.string.StringDistances;
 import fr.inrialpes.exmo.ontosim.util.HungarianAlgorithm;
-import fr.inrialpes.exmo.ontowrap.HeavyLoadedOntology;
 import fr.inrialpes.exmo.ontowrap.LoadedOntology;
-import fr.inrialpes.exmo.ontowrap.Ontology;
 import org.semanticweb.owl.align.Alignment;
 import org.semanticweb.owl.align.AlignmentException;
 import org.semanticweb.owl.align.AlignmentProcess;
@@ -19,7 +17,6 @@ import org.semanticweb.owl.align.AlignmentProcess;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import java.util.Random;
 
 @SuppressWarnings("Duplicates")
 public class PaperAlignment extends DistanceAlignment implements AlignmentProcess {

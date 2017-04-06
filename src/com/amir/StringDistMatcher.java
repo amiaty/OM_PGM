@@ -33,13 +33,10 @@ public class StringDistMatcher implements Iterable<Object[]> {
             // Run matcher
             Properties properties = new Properties();
             //properties.setProperty( "noinst", "1");
-            //stringFunction: subStringDistance, levenshteinDistance,smoaDistance,teinDistance
-            //properties.setProperty("stringFunction", "levenshteinDistance");
+            //stringFunction: subStringDistance, levenshteinDistance,smoaDistance,equalDistance
+            properties.setProperty("stringFunction", "levenshteinDistance");
             al.align(null, properties);
             // Extract result
-            //al.harden(0.8);
-            //System.err.println(al.nbCells());
-
             for ( Cell c : al ) {
                 Object[] r = new Object[4];
                 r[0] = c.getObject1AsURI( al );

@@ -1,20 +1,9 @@
 package com.amir;
 
-import fr.inrialpes.exmo.align.cli.GroupEval;
-import fr.inrialpes.exmo.align.impl.BasicAlignment;
 import fr.inrialpes.exmo.align.impl.eval.PRecEvaluator;
-import fr.inrialpes.exmo.align.parser.AlignmentParser;
-import org.apache.commons.cli.ParseException;
 import org.semanticweb.owl.align.Alignment;
-import org.semanticweb.owl.align.AlignmentException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
-import java.io.PrintWriter;
-import java.text.NumberFormat;
 import java.util.Enumeration;
 import java.util.Formatter;
 import java.util.Vector;
@@ -309,58 +298,4 @@ public class Evaluation {
         writer.println("</body></html>");
         writer.close();
     }
-    @SuppressWarnings("unused")
-    public void referenceEval(String aFiles, String format, String dirPath, String ref, String oFile) {
-        try {
-            AlignmentParser aparser = new AlignmentParser(0);
-            String file1 =  ".\\res\\results\\reference.rdf";
-            file1 = "file:" + file1.replace("\\", "/");
-            Alignment a1 = aparser.parse(file1);
-            String file2 =  ".\\res\\results\\Lily.rdf";
-            file2 = "file:" + file2.replace("\\", "/");
-            Alignment a2 = aparser.parse(file2);
-
-            String dir1 =  ".\\res\\results\\";
-            dir1 = dir1.replace("\\", "/");
-            String[] argGE = new String[9];
-            argGE[0] = "-c";
-            argGE[1] = "-w";
-            argGE[2] = dir1;
-            argGE[3] = "-l";
-            argGE[4] = aFiles;
-            argGE[5] = "-f";
-            argGE[6] = format;
-            argGE[7] = "-r";
-            argGE[8] = ref;
-            PRecEvaluator e1 = new PRecEvaluator(a1,a2);
-            e1.eval(System.getProperties());
-            PrintWriter writer = new PrintWriter(System.out);
-            e1.write(writer);
-/*
-            argGE[9] = "-e";
-            argGE[10] = s;
-            argGE[11] = "-o";
-            argGE[12] = oFile;
-            */
-            GroupEval ge = new GroupEval();
-
-
-
-
-
-
-            ge.parseSpecificCommandLine(argGE);
-            ge.run(argGE);
-            //ge.eval();
-            //GroupEval.main(argGE);
-            writer.flush();
-            writer.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            //logger.error(e.getMessage());
-        }
-
-    }
-
 }
