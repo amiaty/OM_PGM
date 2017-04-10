@@ -279,12 +279,13 @@ public class Main {
             AMAlignment alignment = new AMAlignment();
             alignment.init(uri1, uri2);
             Properties properties = new Properties();
-            properties.setProperty("ObjType", "class");
+            // ObjType : class, property, data_property, object_property, all
+            properties.setProperty("ObjType", "property");
             alignment.align(null, properties);
             Evaluation.PrintPRecEval(ref, alignment);
 
-            properties.setProperty("ObjType", "property");
-            alignment.align(alignment, properties);
+            properties.setProperty("ObjType", "class");
+            alignment.align((Alignment) alignment.clone(), properties);
             Evaluation.PrintPRecEval(ref, alignment);
 
             OutputStream stream = new FileOutputStream( "./res/benchmarks/101/OurResult.rdf", false );

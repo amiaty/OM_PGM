@@ -22,7 +22,6 @@ public class Evaluation {
             evaluator.eval(System.getProperties());
             evaluator.write(writer);
             writer.flush();
-            writer.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

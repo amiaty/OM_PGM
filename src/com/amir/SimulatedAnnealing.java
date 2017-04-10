@@ -11,7 +11,7 @@ public class SimulatedAnnealing {
     private double[][] similarity;
     private List<Integer> sol;
     private int row, col;
-    private double threshold = 0.2;
+    private double threshold = 0.1;
     private List<Set> supO1;
     private List<Set> supO2;
     private List<Set> subO1;
@@ -42,7 +42,7 @@ public class SimulatedAnnealing {
         for (int t = 0; t < duration; ++t){
             curr = best;
             fitCurr = fitBest;
-            for (int i = 0; i < 100; ++i) {
+            for (int i = 0; i < 30; ++i) {
                 next = successor(curr);
                 fitNext = getFitness(next);
                 deltaE = fitNext - fitCurr;
@@ -81,15 +81,14 @@ public class SimulatedAnnealing {
         double reward = 1, sum1 = 0;
         List<Pair<Integer, Integer>> SS = extractSolution(S);
         for (Pair<Integer, Integer> item: SS) {
-
-/*
-            for (Object leftClass : supO1.get(item.getL()))
-                for (Object rightClass : supO2.get(item.getR()))
-                    if (isMatch(leftClass, rightClass, SS) || leftClass == rightClass) {
-                        sum2 += reward;
-                        break;
-                    }
-*/
+            if(supO1.size() != 0) {
+                for (Object leftClass : supO1.get(item.getL()))
+                    for (Object rightClass : supO2.get(item.getR()))
+                        if (isMatch(leftClass, rightClass, SS) || leftClass == rightClass) {
+                            sum2 += reward;
+                            break;
+                        }
+            }
 /*
             for (Object leftClass : subO1.get(item.getL()))
                 for (Object rightClass : subO2.get(item.getR()))

@@ -117,20 +117,21 @@ public class AMAlignment extends DistanceAlignment implements AlignmentProcess {
             List<Set> supO2 = new ArrayList<>();
             List<Set> subO1 = new ArrayList<>();
             List<Set> subO2 = new ArrayList<>();
-/*
-            for( i = 0; i < nbEntities1; ++i ) {
-                supO1.add(((OWLClassImpl)class1o[i]).getSuperClasses((OWLOntology) heavyOntology1.getOntology()));
-                subO1.add(((OWLClassImpl)class1o[i]).getSubClasses((OWLOntology) heavyOntology1.getOntology()));
+
+            if(Objects.equals(p1, "class")) {
+                for (i = 0; i < nbEntities1; ++i) {
+                    supO1.add(((OWLClassImpl) entity1o[i]).getSuperClasses((OWLOntology) heavyOntology1.getOntology()));
+                    //subO1.add(((OWLClassImpl)entity1o[i]).getSubClasses((OWLOntology) heavyOntology1.getOntology()));
+                }
+                for (i = 0; i < nbEntities2; ++i) {
+                    supO2.add(((OWLClassImpl) entity2o[i]).getSuperClasses((OWLOntology) heavyOntology2.getOntology()));
+                    //subO2.add(((OWLClassImpl)entity2o[i]).getSubClasses((OWLOntology) heavyOntology2.getOntology()));
+                }
             }
-            for( i = 0; i < nbEntities2; ++i ) {
-                supO2.add(((OWLClassImpl)class2o[i]).getSuperClasses((OWLOntology) heavyOntology2.getOntology()));
-                subO2.add(((OWLClassImpl)class2o[i]).getSubClasses((OWLOntology) heavyOntology2.getOntology()));
-            }
-*/
             System.out.println("\nRunning SA:");
-            double threshold = 0.2;
+            double threshold = 0.1;
             SimulatedAnnealing SA = new SimulatedAnnealing(matrix, supO1, supO2, subO1, subO2, entity1o, entity2o);
-            SA.solve(200);
+            SA.solve(100);
             List<Pair<Integer, Integer>>  result = SA.getSolution();
             System.out.println("\nSA finished.");
             for (Pair<Integer, Integer> item: result)
