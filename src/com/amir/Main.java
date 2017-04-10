@@ -6,6 +6,7 @@ import fr.inrialpes.exmo.align.impl.renderer.OWLAxiomsRendererVisitor;
 import fr.inrialpes.exmo.align.impl.renderer.RDFRendererVisitor;
 import fr.inrialpes.exmo.align.parser.AlignmentParser;
 import org.apache.commons.io.filefilter.WildcardFileFilter;
+import org.apache.jena.base.Sys;
 import org.semanticweb.owl.align.Alignment;
 import org.semanticweb.owl.align.AlignmentVisitor;
 import org.semanticweb.owl.align.Evaluator;
@@ -15,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import java.io.*;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.*;
 
 @SuppressWarnings("Duplicates")
@@ -45,6 +47,9 @@ public class Main {
                 break;
             case 5:
                 testEvaluationPaperNew();
+                break;
+            case 6:
+                runBenchmarks();
                 break;
             case 9:
                 testJWNL();
@@ -98,6 +103,7 @@ public class Main {
             logger.debug(e.getMessage());
         }
     }
+
     private static void testMatcher() {
         try {
             URI uri1 = new URI("file:./res/example/edu.mit.visus.bibtex.owl");
@@ -150,6 +156,7 @@ public class Main {
             e.printStackTrace();
         }
     }
+
     private static void testEvaluationPaperNew() {
         try {
 
@@ -189,7 +196,7 @@ public class Main {
 
         try {
             OutputStream stream = System.out;
-            PrintWriter writer = new PrintWriter(new BufferedWriter(new OutputStreamWriter( stream, "UTF-8" )),true);
+            PrintWriter writer = new PrintWriter(new BufferedWriter(new OutputStreamWriter( stream, "UTF-8" )),false);
             AlignmentVisitor renderer = new OWLAxiomsRendererVisitor(writer);
             URI uri1 = new URI("file:./res/anatomy-onto/mouse.owl");;
             URI uri2 = new URI("file:./res/anatomy-onto/human.owl");
@@ -255,6 +262,39 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
             logger.debug(e.getMessage());
+        }
+    }
+    // Choice number 6
+    private static void runBenchmarks()
+    {
+        try {
+            URI uri1 = new URI("file:./res/benchmarks/101/onto.rdf");
+            URI uri2 = new URI("file:./res/benchmarks/101/onto.rdf");
+
+            AlignmentParser alignmentParser = new AlignmentParser(0);
+            Alignment ref = alignmentParser.parse("file:./res/benchmarks/101/refalign.rdf");
+            ref.init(uri1, uri2);
+            ref.harden(0.01);
+
+            AMAlignment alignment = new AMAlignment();
+            alignment.init(uri1, uri2);
+            Properties properties = new Properties();
+            properties.setProperty("ObjType", "class");
+            alignment.align(null, properties);
+            Evaluation.PrintPRecEval(ref, alignment);
+
+            properties.setProperty("ObjType", "property");
+            alignment.align(alignment, properties);
+            Evaluation.PrintPRecEval(ref, alignment);
+
+            OutputStream stream = new FileOutputStream( "./res/benchmarks/101/OurResult.rdf", false );
+            PrintWriter printWriter = new PrintWriter(new BufferedWriter(new OutputStreamWriter( stream, "UTF-8" )),false);
+            AlignmentVisitor rendererVisitor = new RDFRendererVisitor(printWriter);
+            alignment.render(rendererVisitor);
+            printWriter.flush();
+            printWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     // Choice number 9

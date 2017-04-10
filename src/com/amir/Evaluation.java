@@ -2,8 +2,10 @@ package com.amir;
 
 import fr.inrialpes.exmo.align.impl.eval.PRecEvaluator;
 import org.semanticweb.owl.align.Alignment;
-import java.io.FileOutputStream;
-import java.io.PrintStream;
+import org.semanticweb.owl.align.AlignmentException;
+import org.semanticweb.owl.align.Evaluator;
+
+import java.io.*;
 import java.util.Enumeration;
 import java.util.Formatter;
 import java.util.Vector;
@@ -11,6 +13,19 @@ import java.util.Vector;
 public class Evaluation {
 
     public Evaluation() {
+    }
+    public static void PrintPRecEval(Alignment ref, Alignment alignment)
+    {
+        try {
+            PrintWriter writer = new PrintWriter(new BufferedWriter(new OutputStreamWriter( System.out, "UTF-8" )),false);
+            Evaluator evaluator = new PRecEvaluator(ref, alignment);
+            evaluator.eval(System.getProperties());
+            evaluator.write(writer);
+            writer.flush();
+            writer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     private static String getTableContents(int n[][])
     {
@@ -288,7 +303,7 @@ public class Evaluation {
                     formatter.format("%1.2f", recall);
                 }
                 writer.println("</td>");
-            };
+            }
             k++;
         }
         writer.println("</tr>");

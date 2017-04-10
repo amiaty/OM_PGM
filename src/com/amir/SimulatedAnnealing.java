@@ -11,7 +11,7 @@ public class SimulatedAnnealing {
     private double[][] similarity;
     private List<Integer> sol;
     private int row, col;
-    private double threshold = 0.1;
+    private double threshold = 0.2;
     private List<Set> supO1;
     private List<Set> supO2;
     private List<Set> subO1;
@@ -81,6 +81,7 @@ public class SimulatedAnnealing {
         double reward = 1, sum1 = 0;
         List<Pair<Integer, Integer>> SS = extractSolution(S);
         for (Pair<Integer, Integer> item: SS) {
+
 /*
             for (Object leftClass : supO1.get(item.getL()))
                 for (Object rightClass : supO2.get(item.getR()))
@@ -88,8 +89,8 @@ public class SimulatedAnnealing {
                         sum2 += reward;
                         break;
                     }
-
-
+*/
+/*
             for (Object leftClass : subO1.get(item.getL()))
                 for (Object rightClass : subO2.get(item.getR()))
                     if (isMatch(leftClass, rightClass, SS) || leftClass == rightClass) {
@@ -100,7 +101,7 @@ public class SimulatedAnnealing {
             sum1 += similarity[item.getL()][item.getR()];
         }
         double sum4 = threshold * 0 / SS.size();
-        return sum1 * 1000 + sum2 * 0 + sum3 * 0 + sum4;
+        return sum1 * 10000 + sum2 * 0 + sum3 * 0 + sum4;
     }
     private List<Integer> generateInitSol(){
         return random.ints(0, row).distinct().limit(row).boxed().collect(Collectors.toCollection(ArrayList::new));

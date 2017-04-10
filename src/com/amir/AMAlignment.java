@@ -13,6 +13,8 @@ import fr.inrialpes.exmo.ontowrap.HeavyLoadedOntology;
 import org.semanticweb.owl.align.Alignment;
 import org.semanticweb.owl.align.AlignmentException;
 import org.semanticweb.owl.align.AlignmentProcess;
+import org.semanticweb.owlapi.model.OWLOntology;
+import uk.ac.manchester.cs.owl.owlapi.OWLClassImpl;
 
 import java.util.*;
 
@@ -37,73 +39,104 @@ public class AMAlignment extends DistanceAlignment implements AlignmentProcess {
             Dist.Initialize("./dict", "3.1");
             heavyOntology1 = (HeavyLoadedOntology<Object>)getOntologyObject1();
             heavyOntology2 = (HeavyLoadedOntology<Object>)getOntologyObject2();
+            String p1 = param.getProperty("ObjType", "all");
+            int nbEntities1;
+            int nbEntities2;
+            Object[] entity1o;
+            Object[] entity2o;
+            switch (p1) {
+                case "class":
+                    nbEntities1 = heavyOntology1.nbClasses();
+                    nbEntities2 = heavyOntology2.nbClasses();
+                    entity1o = heavyOntology1.getClasses().toArray();
+                    entity2o = heavyOntology2.getClasses().toArray();
+                    break;
+                case "property":
+                    nbEntities1 = heavyOntology1.nbProperties();
+                    nbEntities2 = heavyOntology2.nbProperties();
+                    entity1o = heavyOntology1.getProperties().toArray();
+                    entity2o = heavyOntology2.getProperties().toArray();
+                    break;
+                case "data_property":
+                    nbEntities1 = heavyOntology1.nbDataProperties();
+                    nbEntities2 = heavyOntology2.nbDataProperties();
+                    entity1o = heavyOntology1.getDataProperties().toArray();
+                    entity2o = heavyOntology2.getDataProperties().toArray();
+                    break;
+                case "object_property":
+                    nbEntities1 = heavyOntology1.nbObjectProperties();
+                    nbEntities2 = heavyOntology2.nbObjectProperties();
+                    entity1o = heavyOntology1.getObjectProperties().toArray();
+                    entity2o = heavyOntology2.getObjectProperties().toArray();
+                    break;
+                default:
+                    nbEntities1 = heavyOntology1.nbEntities();
+                    nbEntities2 = heavyOntology2.nbEntities();
+                    entity1o = heavyOntology1.getEntities().toArray();
+                    entity2o = heavyOntology2.getEntities().toArray();
+                    break;
+            }
 
-            int nbClasses1 = heavyOntology1.nbEntities();
-            int nbClasses2 = heavyOntology2.nbEntities();
-
-            double[][] matrix = new double[nbClasses1][nbClasses2];
-            Object[] class1o = new Object[nbClasses1];
-            Object[] class2o = new Object[nbClasses2];
-            String[] class1s = new String[nbClasses1];
-            String[] class2s = new String[nbClasses2];
+            double[][] matrix = new double[nbEntities1][nbEntities2];
+            String[] entity1s = new String[nbEntities1];
+            String[] entity2s = new String[nbEntities2];
             int i = 0;
             String str1;
 
-            for ( Object ob : getOntologyObject1().getEntities() ) {
+            for ( Object ob : entity1o ) {
                 //str1 = heavyOntology1.getEntityAnnotations(ob).iterator().next();
                 str1 = heavyOntology1.getEntityName(ob);
-                class1s[i] = str1.trim().replaceAll("_", " ").toLowerCase();
-                class1o[i++] = ob;
+                entity1s[i++] = str1.trim().replaceAll("_", " ").toLowerCase();
             }
 
             int j = 0;
-            for ( Object ob : getOntologyObject2().getEntities() ) {
+            for ( Object ob : entity2o ) {
                 //str1 = heavyOntology2.getEntityAnnotations(ob).iterator().next();
                 str1 = heavyOntology2.getEntityName(ob);
-                class2s[j] = str1.trim().replaceAll("_", " ").toLowerCase();
-                class2o[j++] = ob;
+                entity2s[j++] = str1.trim().replaceAll("_", " ").toLowerCase();
             }
 
             double ii = 0, m1, m2;
-            int jj = -1;
-            double step = 100.0 / nbClasses1;
+            double step = 100.0 / nbEntities1;
 
             System.out.println("Preparing:");
             // make similarity matrix
-            for( i = 0; i < nbClasses1; ++i ) {
-                for (j = 0; j < nbClasses2; ++j) {
-                    m1 = 1.0 - StringDistances.levenshteinDistance(class1s[i], class2s[j]);
-                    //m2 = 1.0 - StringDistances.equalDistance(class1s[i], class2s[j]);
-                    m2 = Dist.wuPalmerSimilarity(class1s[i], class2s[j]);
+            for( i = 0; i < nbEntities1; ++i ) {
+                for (j = 0; j < nbEntities2; ++j) {
+                    m1 = 1.0 - StringDistances.levenshteinDistance(entity1s[i], entity2s[j]);
+                    //m2 = 1.0 - StringDistances.smoaDistance(class1s[i], class2s[j]);
+                    m2 = Dist.computeSimilarity(entity1s[i], entity2s[j]);
                     m2 = Math.min(1.0, m2);
                     matrix[i][j] = Math.max(m1, m2);
                 }
-                if((ii += step) >= (jj + 1)) System.out.print(String.format("\r%d%% completed!", ++jj));
+                if((ii + step) >= ((int)ii + 1)) System.out.print(String.format("\r%d%% completed!", (int)(ii + step)));
+                ii += step;
             }
 
             List<Set> supO1 = new ArrayList<>();
             List<Set> supO2 = new ArrayList<>();
             List<Set> subO1 = new ArrayList<>();
             List<Set> subO2 = new ArrayList<>();
-            /*
-            for( i = 0; i < nbClasses1; ++i ) {
+/*
+            for( i = 0; i < nbEntities1; ++i ) {
                 supO1.add(((OWLClassImpl)class1o[i]).getSuperClasses((OWLOntology) heavyOntology1.getOntology()));
                 subO1.add(((OWLClassImpl)class1o[i]).getSubClasses((OWLOntology) heavyOntology1.getOntology()));
             }
-            for( i = 0; i < nbClasses2; ++i ) {
+            for( i = 0; i < nbEntities2; ++i ) {
                 supO2.add(((OWLClassImpl)class2o[i]).getSuperClasses((OWLOntology) heavyOntology2.getOntology()));
                 subO2.add(((OWLClassImpl)class2o[i]).getSubClasses((OWLOntology) heavyOntology2.getOntology()));
             }
 */
             System.out.println("\nRunning SA:");
-            double threshold = 0.1;
-            SimulatedAnnealing SA = new SimulatedAnnealing(matrix, supO1, supO2, subO1, subO2, class1o, class2o);
-            SA.solve(1000);
+            double threshold = 0.2;
+            SimulatedAnnealing SA = new SimulatedAnnealing(matrix, supO1, supO2, subO1, subO2, entity1o, entity2o);
+            SA.solve(200);
             List<Pair<Integer, Integer>>  result = SA.getSolution();
             System.out.println("\nSA finished.");
             for (Pair<Integer, Integer> item: result)
                 if (matrix[item.getL()][item.getR()] >= threshold)
-                    addAlignCell(class1o[item.getL()], class2o[item.getR()], "=", matrix[item.getL()][item.getR()]);
+                    addAlignCell(entity1o[item.getL()], entity2o[item.getR()], "=", matrix[item.getL()][item.getR()]);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
