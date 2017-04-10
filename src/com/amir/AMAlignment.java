@@ -69,6 +69,12 @@ public class AMAlignment extends DistanceAlignment implements AlignmentProcess {
                     entity1o = heavyOntology1.getObjectProperties().toArray();
                     entity2o = heavyOntology2.getObjectProperties().toArray();
                     break;
+                case "individual":
+                    nbEntities1 = heavyOntology1.nbIndividuals();
+                    nbEntities2 = heavyOntology2.nbIndividuals();
+                    entity1o = heavyOntology1.getIndividuals().toArray();
+                    entity2o = heavyOntology2.getIndividuals().toArray();
+                    break;
                 default:
                     nbEntities1 = heavyOntology1.nbEntities();
                     nbEntities2 = heavyOntology2.nbEntities();
@@ -101,16 +107,15 @@ public class AMAlignment extends DistanceAlignment implements AlignmentProcess {
 
             System.out.println("Preparing:");
             // make similarity matrix
-            for( i = 0; i < nbEntities1; ++i ) {
+            for( i = 0; i < nbEntities1; ++i, ii += step) {
                 for (j = 0; j < nbEntities2; ++j) {
                     m1 = 1.0 - StringDistances.levenshteinDistance(entity1s[i], entity2s[j]);
-                    //m2 = 1.0 - StringDistances.smoaDistance(class1s[i], class2s[j]);
-                    m2 = Dist.computeSimilarity(entity1s[i], entity2s[j]);
+                    m2 = 1.0 - StringDistances.smoaDistance(entity1s[i], entity2s[j]);
+                    //m2 = Dist.computeSimilarity(entity1s[i], entity2s[j]);
                     m2 = Math.min(1.0, m2);
                     matrix[i][j] = Math.max(m1, m2);
                 }
-                if((ii + step) >= ((int)ii + 1)) System.out.print(String.format("\r%d%% completed!", (int)(ii + step)));
-                ii += step;
+                System.out.print(String.format("\r%d%% completed!", (int)(ii + step)));
             }
 
             List<Set> supO1 = new ArrayList<>();
@@ -129,7 +134,7 @@ public class AMAlignment extends DistanceAlignment implements AlignmentProcess {
                 }
             }
             System.out.println("\nRunning SA:");
-            double threshold = 0.1;
+            double threshold = 0.5;
             SimulatedAnnealing SA = new SimulatedAnnealing(matrix, supO1, supO2, subO1, subO2, entity1o, entity2o);
             SA.solve(100);
             List<Pair<Integer, Integer>>  result = SA.getSolution();
