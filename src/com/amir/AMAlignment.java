@@ -39,7 +39,7 @@ public class AMAlignment extends DistanceAlignment implements AlignmentProcess {
             Dist.Initialize("./dict", "3.1");
             heavyOntology1 = (HeavyLoadedOntology<Object>)getOntologyObject1();
             heavyOntology2 = (HeavyLoadedOntology<Object>)getOntologyObject2();
-            String p1 = param.getProperty("ObjType", "all");
+            String p1 = param.getProperty("ObjType", "class");
             int nbEntities1;
             int nbEntities2;
             Object[] entity1o;
@@ -90,15 +90,15 @@ public class AMAlignment extends DistanceAlignment implements AlignmentProcess {
             String str1;
 
             for ( Object ob : entity1o ) {
-                //str1 = heavyOntology1.getEntityAnnotations(ob).iterator().next();
-                str1 = heavyOntology1.getEntityName(ob);
+                str1 = heavyOntology1.getEntityAnnotations(ob).iterator().next();
+                //str1 = heavyOntology1.getEntityName(ob);
                 entity1s[i++] = str1.trim().replaceAll("_", " ").toLowerCase();
             }
 
             int j = 0;
             for ( Object ob : entity2o ) {
-                //str1 = heavyOntology2.getEntityAnnotations(ob).iterator().next();
-                str1 = heavyOntology2.getEntityName(ob);
+                str1 = heavyOntology2.getEntityAnnotations(ob).iterator().next();
+                //str1 = heavyOntology2.getEntityName(ob);
                 entity2s[j++] = str1.trim().replaceAll("_", " ").toLowerCase();
             }
 
@@ -126,15 +126,15 @@ public class AMAlignment extends DistanceAlignment implements AlignmentProcess {
             if(Objects.equals(p1, "class")) {
                 for (i = 0; i < nbEntities1; ++i) {
                     supO1.add(((OWLClassImpl) entity1o[i]).getSuperClasses((OWLOntology) heavyOntology1.getOntology()));
-                    //subO1.add(((OWLClassImpl)entity1o[i]).getSubClasses((OWLOntology) heavyOntology1.getOntology()));
+                    subO1.add(((OWLClassImpl)entity1o[i]).getSubClasses((OWLOntology) heavyOntology1.getOntology()));
                 }
                 for (i = 0; i < nbEntities2; ++i) {
                     supO2.add(((OWLClassImpl) entity2o[i]).getSuperClasses((OWLOntology) heavyOntology2.getOntology()));
-                    //subO2.add(((OWLClassImpl)entity2o[i]).getSubClasses((OWLOntology) heavyOntology2.getOntology()));
+                    subO2.add(((OWLClassImpl)entity2o[i]).getSubClasses((OWLOntology) heavyOntology2.getOntology()));
                 }
             }
             System.out.println("\nRunning SA:");
-            double threshold = 0.5;
+            double threshold = 0.1;
             SimulatedAnnealing SA = new SimulatedAnnealing(matrix, supO1, supO2, subO1, subO2, entity1o, entity2o);
             SA.solve(100);
             List<Pair<Integer, Integer>>  result = SA.getSolution();

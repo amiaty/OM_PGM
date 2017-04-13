@@ -1,5 +1,8 @@
 package com.amir;
 
+import org.semanticweb.owlapi.model.IRI;
+import org.semanticweb.owlapi.model.OWLClass;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -34,7 +37,7 @@ public class SimulatedAnnealing {
         random = new Random(0);
     }
     public void solve(int duration) {
-        double deltaE, temperature = 1.0, alpha = 0.995;
+        double deltaE, temperature = 1.0, alpha = 0.999;
         sol = generateInitSol();
         List<Integer> next, curr, best;
         curr = best = sol;
@@ -42,7 +45,7 @@ public class SimulatedAnnealing {
         for (int t = 0; t < duration; ++t){
             curr = best;
             fitCurr = fitBest;
-            for (int i = 0; i < 1; ++i) {
+            for (int i = 0; i < 50; ++i) {
                 next = successor(curr);
                 fitNext = getFitness(next);
                 deltaE = fitNext - fitCurr;
@@ -69,7 +72,7 @@ public class SimulatedAnnealing {
         return extractSolution(sol);
     }
     private List<Integer> successor(final List<Integer> curr) {
-        int batchSz = Math.min(2, row);
+        int batchSz = Math.min(4, row);
         int[] randInx = random.ints(0, row).distinct().limit(batchSz).toArray();
         List<Integer> next = new ArrayList<>(curr);
         for (int i = 0; i < batchSz; i += 2)
@@ -81,26 +84,30 @@ public class SimulatedAnnealing {
         double reward = 1, sum1 = 0;
         List<Pair<Integer, Integer>> SS = extractSolution(S);
         for (Pair<Integer, Integer> item: SS) {
+
             if(supO1.size() != 0) {
                 for (Object leftClass : supO1.get(item.getL()))
                     for (Object rightClass : supO2.get(item.getR()))
-                        if (isMatch(leftClass, rightClass, SS) || leftClass == rightClass) {
+                        if (isMatched((IRI)leftClass, (IRI)rightClass, SS)) {
                             sum2 += reward;
                             break;
                         }
             }
-/*
-            for (Object leftClass : subO1.get(item.getL()))
-                for (Object rightClass : subO2.get(item.getR()))
-                    if (isMatch(leftClass, rightClass, SS) || leftClass == rightClass) {
-                        sum3 += reward;
-                        break;
-                    }
-*/
+
+            /*
+            if(subO1.size() != 0) {
+                for (Object leftClass : subO1.get(item.getL()))
+                    for (Object rightClass : subO2.get(item.getR()))
+                        if (isMatched(leftClass, rightClass, SS)) {
+                            sum3 += reward;
+                            break;
+                        }
+            }
+            */
             sum1 += similarity[item.getL()][item.getR()];
         }
         double sum4 = threshold * 0 / SS.size();
-        return sum1 * 100 + sum2 * 10 + sum3 * 0 + sum4;
+        return sum1 * 100 + sum2 + sum3 + sum4;
     }
     private List<Integer> generateInitSol(){
         return random.ints(0, row).distinct().limit(row).boxed().collect(Collectors.toCollection(ArrayList::new));
@@ -128,9 +135,9 @@ public class SimulatedAnnealing {
         }
         return res;
     }
-    private boolean isMatch(Object o1,Object o2,List<Pair<Integer, Integer>> ref){
+    private boolean isMatched(IRI o1, IRI o2, List<Pair<Integer, Integer>> ref){
         for(Pair<Integer, Integer> item: ref)
-            if(class1o[item.getL()] == o1 && class2o[item.getR()] == o2) return true;
+            if(((OWLClass)class1o[item.getL()]).getIRI() == o1 && ((OWLClass)class2o[item.getR()]).getIRI() == o2) return true;
         return false;
     }
 }

@@ -1,0 +1,2192 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:j.0="http://xmlns.com/foaf/0.1/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+  xml:base="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#">
+  <owl:Ontology rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#">
+    <owl:versionInfo>$Id: onto.rdf,v 1.30 2008/05/27 14:41:13 euzenat Exp $</owl:versionInfo>
+    <dc:creator>Nick Knouf &lt;nknouf@mit.edu&gt;</dc:creator>
+    <rdfs:label>Bibliographic references</rdfs:label>
+    <dc:date>08/06/2005</dc:date>
+    <dc:description>Bibliographic references in OWL</dc:description>
+    <dc:contributor>Jérôme Euzenat</dc:contributor>
+    <dc:contributor>Antoine Zimmermann &lt;antoine.zimmermann@inrialpes.fr&gt;</dc:contributor>
+  </owl:Ontology>
+  <owl:Class rdf:ID="Date">
+    <rdfs:label xml:lang="en">Date</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="abatqxohanbmqhsrrvwmrmudgp"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#gDay"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="kkhmwsaijojdfmizfhilidnvar"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#kkhmwsaijojdfmizfhilidnvar"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#gYear"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="pdlkfryhbztxggdoecqehvjehk"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#pdlkfryhbztxggdoecqehvjehk"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#gMonth"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#abatqxohanbmqhsrrvwmrmudgp"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="dkhhspdcagmljkiyfenqklpxcq">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="vafcjtoovheqwxjminitwlqjlp"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="pages"/>
+        </owl:onProperty>
+        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:minCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="paliclnedyryqqldzbhminyity"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="ggdvurfwejzoiplogphosbpqrj"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">dkhhspdcagmljkiyfenqklpxcq</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="zkxjhzdlrshnaukaqetigwwode">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="zygiijwhbuypsgkgwwvzgbbacf"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">zkxjhzdlrshnaukaqetigwwode</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Organization"/>
+  <owl:Class rdf:ID="Unpublished">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Informal"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Unpublished</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="gqpyxhddfnjebqoeqgzchluitr"/>
+        </owl:onProperty>
+        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:minCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#ggdvurfwejzoiplogphosbpqrj"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="sazkvkpclvyqurvwfziwgodtva"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Booklet">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#Informal"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Booklet</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="cxfydiljurbqyabgcegvzjwwlf">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="wugjcwojlwvaymggmnbcycrtct"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#Date"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="number"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="ezwvrangcmmjslvwclibrgmtar"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#wugjcwojlwvaymggmnbcycrtct"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#ggdvurfwejzoiplogphosbpqrj"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">cxfydiljurbqyabgcegvzjwwlf</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#vafcjtoovheqwxjminitwlqjlp"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#pages"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="qdccsnakkmdfmunbdsvvsghvfx"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="rhovioavdtibetftcogvtncxcs">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#vafcjtoovheqwxjminitwlqjlp"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#ggdvurfwejzoiplogphosbpqrj"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="uoippdxuokwfllmzxncscotfzl"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">rhovioavdtibetftcogvtncxcs</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="ndktfyctmjvfaghbxswatjskmm">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#vafcjtoovheqwxjminitwlqjlp"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#ggdvurfwejzoiplogphosbpqrj"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="tiuphrwbvqdbkwfaxljjvxmpoo"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">ndktfyctmjvfaghbxswatjskmm</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#vafcjtoovheqwxjminitwlqjlp">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="psupsjrrmymtarpaheuejgryyl"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#pages"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#sazkvkpclvyqurvwfziwgodtva"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">vafcjtoovheqwxjminitwlqjlp</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="iujovtiraxmqiyelnioabcaigs">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="nygwijbnhrirgedpulyfmqcaua"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="vkigrilpylouxmpnqiokdzbxjr"/>
+        </owl:onProperty>
+        <owl:allValuesFrom>
+          <owl:Class rdf:ID="Chapter"/>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">iujovtiraxmqiyelnioabcaigs</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#sazkvkpclvyqurvwfziwgodtva"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="jrrvtwvgafhhzsibgttoztkfzf"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#wugjcwojlwvaymggmnbcycrtct"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">psupsjrrmymtarpaheuejgryyl</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="zsusshgcadkabagobadwagedlq">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="nqbmrizcwkunxsrzjnchdgunkk"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="uwukbuyevtckewwkxcovhserqj"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="sppkzjhtwhqzizewcfgoguoknk"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="ugzplblzlvlrxwhlzziqwnszgc"/>
+        </owl:onProperty>
+        <owl:allValuesFrom>
+          <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#zygiijwhbuypsgkgwwvzgbbacf"/>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="shortName"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">zsusshgcadkabagobadwagedlq</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="LectureNotes">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#Informal"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">LectureNotes</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#Informal">
+    <rdfs:subClassOf rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+    <rdfs:label xml:lang="en">Informal</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#sazkvkpclvyqurvwfziwgodtva"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="ttimzomupgsvfksptbcuregfeb">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="eyecqdhseohxxumxrcjwrawzjw"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">ttimzomupgsvfksptbcuregfeb</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="ukabftuxptbcuesiqgpvthuiuw">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#nygwijbnhrirgedpulyfmqcaua"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#vkigrilpylouxmpnqiokdzbxjr"/>
+        </owl:onProperty>
+        <owl:allValuesFrom>
+          <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#Chapter"/>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="parts"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#ndktfyctmjvfaghbxswatjskmm"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">ukabftuxptbcuesiqgpvthuiuw</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="ycgpzalfoejiralpelcimyaaib">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="hpfesubbcogbaoxnpryuvxclfs"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">ycgpzalfoejiralpelcimyaaib</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#eyecqdhseohxxumxrcjwrawzjw">
+    <rdfs:subClassOf rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="school"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#wugjcwojlwvaymggmnbcycrtct"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#ggdvurfwejzoiplogphosbpqrj"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#sazkvkpclvyqurvwfziwgodtva"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">eyecqdhseohxxumxrcjwrawzjw</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Publisher">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#zygiijwhbuypsgkgwwvzgbbacf"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Publisher</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#Chapter">
+    <rdfs:subClassOf rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#vafcjtoovheqwxjminitwlqjlp"/>
+    <rdfs:label xml:lang="en">BookPart</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="fulkpjqjdobnktxlozmfjfmyur"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#fulkpjqjdobnktxlozmfjfmyur"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="pgymrwsujdhalsthklscvofawm">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="lhhbczlitcvokfawtlpvvlyngd"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#nygwijbnhrirgedpulyfmqcaua"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="event"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#zsusshgcadkabagobadwagedlq"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="organization"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="avoikjjmtjbzwydhslugomysbg"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#rhovioavdtibetftcogvtncxcs"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">pgymrwsujdhalsthklscvofawm</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#event"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="opfzatwenfbapxxudrtpvkvvbn">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#rest"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#rest"/>
+        </owl:onProperty>
+        <owl:allValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#opfzatwenfbapxxudrtpvkvvbn"/>
+              <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                  <rdf:List rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                </owl:oneOf>
+              </owl:Class>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#first"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#first"/>
+        </owl:onProperty>
+        <owl:allValuesFrom>
+          <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Person"/>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">opfzatwenfbapxxudrtpvkvvbn</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="pexiiksdndypmhdeaklsbcmyyo">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="jquzheirksnhxejorrhmvcpzgx"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="rawlhtquykevfjebnuaemieadu"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">pexiiksdndypmhdeaklsbcmyyo</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#zygiijwhbuypsgkgwwvzgbbacf">
+    <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Organization"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#shortName"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="wyjgabxrjytpailxuhuhzuqbqi"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#sppkzjhtwhqzizewcfgoguoknk"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">zygiijwhbuypsgkgwwvzgbbacf</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#nygwijbnhrirgedpulyfmqcaua">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="exkdxjoytlsrfyodwlncicqovi"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="btmocdytltfqiafolgumhcloyq"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="sazodpkterfxkgkcsjmscdgyft"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#wugjcwojlwvaymggmnbcycrtct"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#Date"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#sazkvkpclvyqurvwfziwgodtva"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">nygwijbnhrirgedpulyfmqcaua</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#ggdvurfwejzoiplogphosbpqrj"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#qdccsnakkmdfmunbdsvvsghvfx"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#wugjcwojlwvaymggmnbcycrtct"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="bajgkeslotdvbbviacckpduqzr">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#shortName"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#exkdxjoytlsrfyodwlncicqovi"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">bajgkeslotdvbbviacckpduqzr</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#sppkzjhtwhqzizewcfgoguoknk"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#sppkzjhtwhqzizewcfgoguoknk"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#btmocdytltfqiafolgumhcloyq"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="ixersenjvexpsesfqlydehlufd"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#cxfydiljurbqyabgcegvzjwwlf"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="zlrwldjshftfshkthztjbfaksk"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="pdmnwcctaiwuoqhottbukpqdtj"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="itclpzkjgcpdedwivmyxuuodxh">
+    <rdfs:subClassOf rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#Informal"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#sazodpkterfxkgkcsjmscdgyft"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#sazkvkpclvyqurvwfziwgodtva"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#organization"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">itclpzkjgcpdedwivmyxuuodxh</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#hpfesubbcogbaoxnpryuvxclfs">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="aewrtbatpeggpljehabwlxzfnm"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#wugjcwojlwvaymggmnbcycrtct"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#sazkvkpclvyqurvwfziwgodtva"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#number"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#wugjcwojlwvaymggmnbcycrtct"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#Date"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#ggdvurfwejzoiplogphosbpqrj"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">hpfesubbcogbaoxnpryuvxclfs</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ysthjkidjsmmtuocsfakrljrah">
+    <rdfs:subClassOf rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#hpfesubbcogbaoxnpryuvxclfs"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="xlyleimnllkwctahcnkxvyvfsy"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">ysthjkidjsmmtuocsfakrljrah</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="khhvtebjstvpeajfelpfwtpkwg">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="jzxnrcmvfypbewlhpjqupoxfhb"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#jzxnrcmvfypbewlhpjqupoxfhb"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="country"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#country"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="omxqedclwnokjbztzpepubisnd"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#omxqedclwnokjbztzpepubisnd"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">khhvtebjstvpeajfelpfwtpkwg</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="zhjyetjjeoyfdzkxrddzlspkhz">
+    <rdfs:subClassOf rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#eyecqdhseohxxumxrcjwrawzjw"/>
+    <rdfs:label xml:lang="en">zhjyetjjeoyfdzkxrddzlspkhz</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="mmhwyiizzaotennxprtfpijkig">
+    <rdfs:subClassOf rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+    <rdfs:label xml:lang="en">mmhwyiizzaotennxprtfpijkig</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="kuwvidixnfobsstylxswxnppjy">
+    <rdfs:subClassOf rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+    <rdfs:label xml:lang="en">kuwvidixnfobsstylxswxnppjy</rdfs:label>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#vkigrilpylouxmpnqiokdzbxjr">
+    <rdfs:label xml:lang="en">vkigrilpylouxmpnqiokdzbxjr</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+    <rdfs:range rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#Chapter"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#xlyleimnllkwctahcnkxvyvfsy">
+    <rdfs:label xml:lang="en">xlyleimnllkwctahcnkxvyvfsy</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#wyjgabxrjytpailxuhuhzuqbqi">
+    <rdfs:label xml:lang="en">wyjgabxrjytpailxuhuhzuqbqi</rdfs:label>
+    <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:range rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#khhvtebjstvpeajfelpfwtpkwg"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#ggdvurfwejzoiplogphosbpqrj">
+    <rdfs:label xml:lang="en">ggdvurfwejzoiplogphosbpqrj</rdfs:label>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#jrrvtwvgafhhzsibgttoztkfzf"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#lhhbczlitcvokfawtlpvvlyngd">
+    <rdfs:label xml:lang="en">lhhbczlitcvokfawtlpvvlyngd</rdfs:label>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#jrrvtwvgafhhzsibgttoztkfzf"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#parts">
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+    <rdfs:range rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#vafcjtoovheqwxjminitwlqjlp"/>
+    <rdfs:label xml:lang="en">parts</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#uwukbuyevtckewwkxcovhserqj">
+    <rdfs:label xml:lang="en">uwukbuyevtckewwkxcovhserqj</rdfs:label>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+          <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#zsusshgcadkabagobadwagedlq"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#khhvtebjstvpeajfelpfwtpkwg"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#tiuphrwbvqdbkwfaxljjvxmpoo">
+    <rdfs:label xml:lang="en">tiuphrwbvqdbkwfaxljjvxmpoo</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#ndktfyctmjvfaghbxswatjskmm"/>
+    <rdfs:range rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#ukabftuxptbcuesiqgpvthuiuw"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="ykgdywrutvpmfdgfppqrwsxbgq"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#ezwvrangcmmjslvwclibrgmtar">
+    <rdfs:label xml:lang="en">ezwvrangcmmjslvwclibrgmtar</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#cxfydiljurbqyabgcegvzjwwlf"/>
+    <rdfs:range rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#bajgkeslotdvbbviacckpduqzr"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#ykgdywrutvpmfdgfppqrwsxbgq"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#first">
+    <rdfs:domain rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#ykgdywrutvpmfdgfppqrwsxbgq">
+    <rdfs:label xml:lang="en">ykgdywrutvpmfdgfppqrwsxbgq</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#vafcjtoovheqwxjminitwlqjlp"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#avoikjjmtjbzwydhslugomysbg">
+    <rdfs:label xml:lang="en">avoikjjmtjbzwydhslugomysbg</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#pgymrwsujdhalsthklscvofawm"/>
+    <rdfs:range rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#rhovioavdtibetftcogvtncxcs"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#paliclnedyryqqldzbhminyity">
+    <rdfs:label xml:lang="en">paliclnedyryqqldzbhminyity</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#dkhhspdcagmljkiyfenqklpxcq"/>
+    <rdfs:range rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#iujovtiraxmqiyelnioabcaigs"/>
+    <rdfs:subPropertyOf rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#ykgdywrutvpmfdgfppqrwsxbgq"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#aewrtbatpeggpljehabwlxzfnm">
+    <rdfs:label xml:lang="en">aewrtbatpeggpljehabwlxzfnm</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#hpfesubbcogbaoxnpryuvxclfs"/>
+    <rdfs:range rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#zygiijwhbuypsgkgwwvzgbbacf"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#ixersenjvexpsesfqlydehlufd">
+    <rdfs:label xml:lang="en">ixersenjvexpsesfqlydehlufd</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#bajgkeslotdvbbviacckpduqzr"/>
+    <rdfs:range rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#cxfydiljurbqyabgcegvzjwwlf"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#rest">
+    <rdfs:domain rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#uoippdxuokwfllmzxncscotfzl">
+    <rdfs:label xml:lang="en">uoippdxuokwfllmzxncscotfzl</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#rhovioavdtibetftcogvtncxcs"/>
+    <rdfs:range rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#pgymrwsujdhalsthklscvofawm"/>
+    <rdfs:subPropertyOf rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#ykgdywrutvpmfdgfppqrwsxbgq"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#wugjcwojlwvaymggmnbcycrtct">
+    <rdfs:label xml:lang="en">wugjcwojlwvaymggmnbcycrtct</rdfs:label>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+          <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#zsusshgcadkabagobadwagedlq"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#Date"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#pages">
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#vafcjtoovheqwxjminitwlqjlp"/>
+    <rdfs:range rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#pexiiksdndypmhdeaklsbcmyyo"/>
+    <rdfs:label xml:lang="en">pages</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#organization">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#pgymrwsujdhalsthklscvofawm"/>
+          <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#itclpzkjgcpdedwivmyxuuodxh"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Organization"/>
+    <rdfs:label xml:lang="en">organization</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="directors">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#jrrvtwvgafhhzsibgttoztkfzf"/>
+    </rdfs:subPropertyOf>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#kuwvidixnfobsstylxswxnppjy"/>
+    <rdfs:label xml:lang="en">directors</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#event">
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#pgymrwsujdhalsthklscvofawm"/>
+    <rdfs:range rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#zsusshgcadkabagobadwagedlq"/>
+    <rdfs:label xml:lang="en">event</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#ugzplblzlvlrxwhlzziqwnszgc">
+    <rdfs:label xml:lang="en">ugzplblzlvlrxwhlzziqwnszgc</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#zsusshgcadkabagobadwagedlq"/>
+    <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Organization"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#exkdxjoytlsrfyodwlncicqovi">
+    <rdfs:label xml:lang="en">exkdxjoytlsrfyodwlncicqovi</rdfs:label>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+          <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#bajgkeslotdvbbviacckpduqzr"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#Publisher"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#jrrvtwvgafhhzsibgttoztkfzf">
+    <rdfs:label xml:lang="en">jrrvtwvgafhhzsibgttoztkfzf</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+    <rdfs:range rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#opfzatwenfbapxxudrtpvkvvbn"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#school">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#eyecqdhseohxxumxrcjwrawzjw"/>
+          <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#LectureNotes"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#zkxjhzdlrshnaukaqetigwwode"/>
+    <rdfs:label xml:lang="en">school</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#gqpyxhddfnjebqoeqgzchluitr">
+    <rdfs:label xml:lang="en">gqpyxhddfnjebqoeqgzchluitr</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#nqbmrizcwkunxsrzjnchdgunkk">
+    <rdfs:label xml:lang="en">nqbmrizcwkunxsrzjnchdgunkk</rdfs:label>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+          <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#zsusshgcadkabagobadwagedlq"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:ID="rwhdtcomzbcxaxbisldshnozeb"/>
+    </rdfs:subPropertyOf>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="rumasbmelkvgoaxzizlasrbdoy">
+    <rdfs:label xml:lang="en">rumasbmelkvgoaxzizlasrbdoy</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="tzzlaxzveyafwlmqzrddfkwxoy">
+    <rdfs:label xml:lang="en">tzzlaxzveyafwlmqzrddfkwxoy</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="lccn">
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="en">LCCN</rdfs:label>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/name"/>
+  <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#kkhmwsaijojdfmizfhilidnvar">
+    <rdfs:label xml:lang="en">kkhmwsaijojdfmizfhilidnvar</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#Date"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#gYear"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="vamulnthwyzkdwwmwmkaaxjtde">
+    <rdfs:label xml:lang="en">vamulnthwyzkdwwmwmkaaxjtde</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://purl.org/dc/elements/1.1/creator"/>
+  <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#sazkvkpclvyqurvwfziwgodtva">
+    <rdfs:label xml:lang="en">sazkvkpclvyqurvwfziwgodtva</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="gcuhaooawixvmidbjslqmeyeco">
+    <rdfs:label xml:lang="en">gcuhaooawixvmidbjslqmeyeco</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#sazodpkterfxkgkcsjmscdgyft">
+    <rdfs:label xml:lang="en">sazodpkterfxkgkcsjmscdgyft</rdfs:label>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#nygwijbnhrirgedpulyfmqcaua"/>
+          <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#itclpzkjgcpdedwivmyxuuodxh"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="izlpdjgfjarikrwoqbevxdojit">
+    <rdfs:label xml:lang="en">izlpdjgfjarikrwoqbevxdojit</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="gcoqoanagmgmheoknjzpzrhbpc"/>
+  <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#rwhdtcomzbcxaxbisldshnozeb">
+    <rdfs:label xml:lang="en">rwhdtcomzbcxaxbisldshnozeb</rdfs:label>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+          <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#zsusshgcadkabagobadwagedlq"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#jquzheirksnhxejorrhmvcpzgx">
+    <rdfs:label xml:lang="en">jquzheirksnhxejorrhmvcpzgx</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#pexiiksdndypmhdeaklsbcmyyo"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://purl.org/dc/elements/1.1/contributor"/>
+  <owl:DatatypeProperty rdf:ID="banxgzrijnadltrtmdvqsovnoe">
+    <rdfs:label xml:lang="en">banxgzrijnadltrtmdvqsovnoe</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#pdmnwcctaiwuoqhottbukpqdtj">
+    <rdfs:label xml:lang="en">pdmnwcctaiwuoqhottbukpqdtj</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#Chapter"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="foezqtlciwdrufwnytygfqrpuk">
+    <rdfs:label xml:lang="en">foezqtlciwdrufwnytygfqrpuk</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="diszcbievmutvkhuhbodtzqgng">
+    <rdfs:label xml:lang="en">diszcbievmutvkhuhbodtzqgng</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="keywords">
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="en">keywords</rdfs:label>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="djerirqqhothfwvvklbfhixvud">
+    <rdfs:label xml:lang="en">djerirqqhothfwvvklbfhixvud</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#pdlkfryhbztxggdoecqehvjehk">
+    <rdfs:label xml:lang="en">pdlkfryhbztxggdoecqehvjehk</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#Date"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#gMonth"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#btmocdytltfqiafolgumhcloyq">
+    <rdfs:label xml:lang="en">btmocdytltfqiafolgumhcloyq</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#omxqedclwnokjbztzpepubisnd">
+    <rdfs:label xml:lang="en">omxqedclwnokjbztzpepubisnd</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#khhvtebjstvpeajfelpfwtpkwg"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#qdccsnakkmdfmunbdsvvsghvfx">
+    <rdfs:label xml:lang="en">qdccsnakkmdfmunbdsvvsghvfx</rdfs:label>
+    <rdfs:subPropertyOf rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#rwhdtcomzbcxaxbisldshnozeb"/>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#rawlhtquykevfjebnuaemieadu">
+    <rdfs:label xml:lang="en">rawlhtquykevfjebnuaemieadu</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#pexiiksdndypmhdeaklsbcmyyo"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="omwjwqtdwqwieufbiuquinxzzp">
+    <rdfs:label xml:lang="en">omwjwqtdwqwieufbiuquinxzzp</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="igphpnvtwpuskjthifvtzjmgdz">
+    <rdfs:label xml:lang="en">igphpnvtwpuskjthifvtzjmgdz</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#language"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="wsoljfdbqcvvsrypjbcszmihyc">
+    <rdfs:label xml:lang="en">wsoljfdbqcvvsrypjbcszmihyc</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="issn">
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="en">ISSN</rdfs:label>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="type">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#Chapter"/>
+          <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#ycgpzalfoejiralpelcimyaaib"/>
+          <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#eyecqdhseohxxumxrcjwrawzjw"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="en">type</rdfs:label>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#shortName">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="en">The name of an entity.</rdfs:label>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#abatqxohanbmqhsrrvwmrmudgp">
+    <rdfs:label xml:lang="en">abatqxohanbmqhsrrvwmrmudgp</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#Date"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#gDay"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://purl.org/dc/elements/1.1/date"/>
+  <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#fulkpjqjdobnktxlozmfjfmyur">
+    <rdfs:label xml:lang="en">fulkpjqjdobnktxlozmfjfmyur</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#vafcjtoovheqwxjminitwlqjlp"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="xtczdymjpmkljhzqziklzqrkgp">
+    <rdfs:label xml:lang="en">xtczdymjpmkljhzqziklzqrkgp</rdfs:label>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#mmhwyiizzaotennxprtfpijkig"/>
+          <owl:Class rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#Booklet"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#sppkzjhtwhqzizewcfgoguoknk">
+    <rdfs:label xml:lang="en">sppkzjhtwhqzizewcfgoguoknk</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://purl.org/dc/elements/1.1/description"/>
+  <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/firstName"/>
+  <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#jzxnrcmvfypbewlhpjqupoxfhb">
+    <rdfs:label xml:lang="en">jzxnrcmvfypbewlhpjqupoxfhb</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#khhvtebjstvpeajfelpfwtpkwg"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="lyjqcjkmjnlhhvilxqshlhlnhu">
+    <rdfs:label xml:lang="en">lyjqcjkmjnlhhvilxqshlhlnhu</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#zlrwldjshftfshkthztjbfaksk">
+    <rdfs:label xml:lang="en">zlrwldjshftfshkthztjbfaksk</rdfs:label>
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#bajgkeslotdvbbviacckpduqzr"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#country">
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#khhvtebjstvpeajfelpfwtpkwg"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="en">country</rdfs:label>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#number">
+    <rdfs:domain rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#psupsjrrmymtarpaheuejgryyl"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#rwhdtcomzbcxaxbisldshnozeb"/>
+    <rdfs:label xml:lang="en">number</rdfs:label>
+  </owl:DatatypeProperty>
+  <rhovioavdtibetftcogvtncxcs rdf:ID="a11065952">
+    <rdfs:label>Ontology Mapping - An Integrated Approach</rdfs:label>
+    <ggdvurfwejzoiplogphosbpqrj>
+      <opfzatwenfbapxxudrtpvkvvbn>
+        <rdf:first>
+          <j.0:Person rdf:ID="a712561038">
+            <rdfs:label>Marc Ehrig</rdfs:label>
+            <j.0:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Marc Ehrig</j.0:name>
+            <j.0:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Marc</j.0:firstName>
+            <gcoqoanagmgmheoknjzpzrhbpc rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Ehrig</gcoqoanagmgmheoknjzpzrhbpc>
+          </j.0:Person>
+        </rdf:first>
+        <rdf:rest>
+          <opfzatwenfbapxxudrtpvkvvbn>
+            <rdf:first>
+              <j.0:Person rdf:ID="a79573306">
+                <rdfs:label>York Sure</rdfs:label>
+                <j.0:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >York Sure</j.0:name>
+                <j.0:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >York</j.0:firstName>
+                <gcoqoanagmgmheoknjzpzrhbpc rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Sure</gcoqoanagmgmheoknjzpzrhbpc>
+              </j.0:Person>
+            </rdf:first>
+            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+          </opfzatwenfbapxxudrtpvkvvbn>
+        </rdf:rest>
+      </opfzatwenfbapxxudrtpvkvvbn>
+    </ggdvurfwejzoiplogphosbpqrj>
+    <uoippdxuokwfllmzxncscotfzl>
+      <pgymrwsujdhalsthklscvofawm rdf:ID="a32071928">
+        <rdfs:label>Proceedings of the First European Semantic Web Symposium</rdfs:label>
+        <exkdxjoytlsrfyodwlncicqovi>
+          <Publisher rdf:ID="a131020767">
+            <rdfs:label>Springer-Verlag</rdfs:label>
+            <sppkzjhtwhqzizewcfgoguoknk rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Springer-Verlag</sppkzjhtwhqzizewcfgoguoknk>
+            <wyjgabxrjytpailxuhuhzuqbqi>
+              <khhvtebjstvpeajfelpfwtpkwg>
+                <jzxnrcmvfypbewlhpjqupoxfhb>Heidelberg</jzxnrcmvfypbewlhpjqupoxfhb>
+                <country>DE</country>
+              </khhvtebjstvpeajfelpfwtpkwg>
+            </wyjgabxrjytpailxuhuhzuqbqi>
+          </Publisher>
+        </exkdxjoytlsrfyodwlncicqovi>
+        <event>
+          <zsusshgcadkabagobadwagedlq rdf:ID="a32071928c">
+            <rdfs:label>First European Semantic Web Symposium</rdfs:label>
+            <sppkzjhtwhqzizewcfgoguoknk>European Semantic Web Symposium</sppkzjhtwhqzizewcfgoguoknk>
+            <shortName>ESWS</shortName>
+            <nqbmrizcwkunxsrzjnchdgunkk>1</nqbmrizcwkunxsrzjnchdgunkk>
+            <uwukbuyevtckewwkxcovhserqj>
+              <khhvtebjstvpeajfelpfwtpkwg>
+                <jzxnrcmvfypbewlhpjqupoxfhb rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Heraklion</jzxnrcmvfypbewlhpjqupoxfhb>
+                <country>GR</country>
+              </khhvtebjstvpeajfelpfwtpkwg>
+            </uwukbuyevtckewwkxcovhserqj>
+            <wugjcwojlwvaymggmnbcycrtct>
+              <Date>
+                <pdlkfryhbztxggdoecqehvjehk rdf:datatype="http://www.w3.org/2001/XMLSchema#gMonth"
+                >--05</pdlkfryhbztxggdoecqehvjehk>
+                <kkhmwsaijojdfmizfhilidnvar rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear"
+                >2004</kkhmwsaijojdfmizfhilidnvar>
+              </Date>
+            </wugjcwojlwvaymggmnbcycrtct>
+          </zsusshgcadkabagobadwagedlq>
+        </event>
+        <sazkvkpclvyqurvwfziwgodtva>Proceedings of the First European Semantic Web Symposium</sazkvkpclvyqurvwfziwgodtva>
+        <wugjcwojlwvaymggmnbcycrtct>
+          <Date>
+            <kkhmwsaijojdfmizfhilidnvar rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear"
+            >2004</kkhmwsaijojdfmizfhilidnvar>
+          </Date>
+        </wugjcwojlwvaymggmnbcycrtct>
+      </pgymrwsujdhalsthklscvofawm>
+    </uoippdxuokwfllmzxncscotfzl>
+    <sazkvkpclvyqurvwfziwgodtva>Ontology Mapping - An Integrated Approach</sazkvkpclvyqurvwfziwgodtva>
+    <tzzlaxzveyafwlmqzrddfkwxoy>http://www.aifb.uni-karlsruhe.de/WBS/meh/publications/ehrig04ontology_ESWS04.pdf</tzzlaxzveyafwlmqzrddfkwxoy>
+  </rhovioavdtibetftcogvtncxcs>
+  <mmhwyiizzaotennxprtfpijkig rdf:ID="a140583454">
+    <rdfs:label>{QOM} - Quick Ontology Mapping</rdfs:label>
+    <ggdvurfwejzoiplogphosbpqrj>
+      <opfzatwenfbapxxudrtpvkvvbn>
+        <rdf:first rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#a712561038"/>
+        <rdf:rest>
+          <opfzatwenfbapxxudrtpvkvvbn>
+            <rdf:first>
+              <j.0:Person rdf:ID="a71003986">
+                <rdfs:label>Steffen Staab</rdfs:label>
+                <j.0:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Steffen Staab</j.0:name>
+                <j.0:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Steffen</j.0:firstName>
+                <gcoqoanagmgmheoknjzpzrhbpc rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Staab</gcoqoanagmgmheoknjzpzrhbpc>
+              </j.0:Person>
+            </rdf:first>
+            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+          </opfzatwenfbapxxudrtpvkvvbn>
+        </rdf:rest>
+      </opfzatwenfbapxxudrtpvkvvbn>
+    </ggdvurfwejzoiplogphosbpqrj>
+    <sazkvkpclvyqurvwfziwgodtva>{QOM} - Quick Ontology Mapping</sazkvkpclvyqurvwfziwgodtva>
+    <gqpyxhddfnjebqoeqgzchluitr>submitted to the ISWC 04</gqpyxhddfnjebqoeqgzchluitr>
+    <wugjcwojlwvaymggmnbcycrtct>
+      <Date>
+        <kkhmwsaijojdfmizfhilidnvar rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear"
+        >2004</kkhmwsaijojdfmizfhilidnvar>
+      </Date>
+    </wugjcwojlwvaymggmnbcycrtct>
+  </mmhwyiizzaotennxprtfpijkig>
+  <cxfydiljurbqyabgcegvzjwwlf rdf:ID="a846015923">
+    <rdfs:label>A Framework for Modeling and Evaluating Automatic Semantic Reconciliation</rdfs:label>
+    <ggdvurfwejzoiplogphosbpqrj>
+      <opfzatwenfbapxxudrtpvkvvbn>
+        <rdf:first>
+          <j.0:Person rdf:ID="a900366022">
+            <rdfs:label>Avigdor Gal</rdfs:label>
+            <j.0:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Avigdor Gal</j.0:name>
+            <j.0:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Avigdor</j.0:firstName>
+            <gcoqoanagmgmheoknjzpzrhbpc rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Gal</gcoqoanagmgmheoknjzpzrhbpc>
+          </j.0:Person>
+        </rdf:first>
+        <rdf:rest>
+          <opfzatwenfbapxxudrtpvkvvbn>
+            <rdf:first>
+              <j.0:Person rdf:ID="a467748807">
+                <rdfs:label>Ateret Anaby-Tavor</rdfs:label>
+                <j.0:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Ateret Anaby-Tavor</j.0:name>
+                <j.0:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Ateret</j.0:firstName>
+                <gcoqoanagmgmheoknjzpzrhbpc rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Anaby-Tavor</gcoqoanagmgmheoknjzpzrhbpc>
+              </j.0:Person>
+            </rdf:first>
+            <rdf:rest>
+              <opfzatwenfbapxxudrtpvkvvbn>
+                <rdf:first>
+                  <j.0:Person rdf:ID="a971541439">
+                    <rdfs:label>Alberto Trombetta</rdfs:label>
+                    <j.0:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Alberto Trombetta</j.0:name>
+                    <j.0:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Alberto</j.0:firstName>
+                    <gcoqoanagmgmheoknjzpzrhbpc rdf:datatype=
+                    "http://www.w3.org/2001/XMLSchema#string"
+                    >Trombetta</gcoqoanagmgmheoknjzpzrhbpc>
+                  </j.0:Person>
+                </rdf:first>
+                <rdf:rest>
+                  <opfzatwenfbapxxudrtpvkvvbn>
+                    <rdf:first>
+                      <j.0:Person rdf:ID="a066600210">
+                        <rdfs:label>Danilo Montesi</rdfs:label>
+                        <j.0:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >Danilo Montesi</j.0:name>
+                        <j.0:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >Danilo</j.0:firstName>
+                        <gcoqoanagmgmheoknjzpzrhbpc rdf:datatype=
+                        "http://www.w3.org/2001/XMLSchema#string"
+                        >Montesi</gcoqoanagmgmheoknjzpzrhbpc>
+                      </j.0:Person>
+                    </rdf:first>
+                    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                  </opfzatwenfbapxxudrtpvkvvbn>
+                </rdf:rest>
+              </opfzatwenfbapxxudrtpvkvvbn>
+            </rdf:rest>
+          </opfzatwenfbapxxudrtpvkvvbn>
+        </rdf:rest>
+      </opfzatwenfbapxxudrtpvkvvbn>
+    </ggdvurfwejzoiplogphosbpqrj>
+    <ezwvrangcmmjslvwclibrgmtar>
+      <bajgkeslotdvbbviacckpduqzr rdf:ID="a906774044">
+        <rdfs:label>VLDB Journal</rdfs:label>
+        <sppkzjhtwhqzizewcfgoguoknk rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >VLDB Journal</sppkzjhtwhqzizewcfgoguoknk>
+      </bajgkeslotdvbbviacckpduqzr>
+    </ezwvrangcmmjslvwclibrgmtar>
+    <sazkvkpclvyqurvwfziwgodtva>A Framework for Modeling and Evaluating Automatic Semantic Reconciliation</sazkvkpclvyqurvwfziwgodtva>
+    <gqpyxhddfnjebqoeqgzchluitr>to appear</gqpyxhddfnjebqoeqgzchluitr>
+    <wugjcwojlwvaymggmnbcycrtct>
+      <Date>
+        <kkhmwsaijojdfmizfhilidnvar rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear"
+        >2004</kkhmwsaijojdfmizfhilidnvar>
+      </Date>
+    </wugjcwojlwvaymggmnbcycrtct>
+  </cxfydiljurbqyabgcegvzjwwlf>
+  <cxfydiljurbqyabgcegvzjwwlf rdf:ID="a80299267">
+    <rdfs:label>Start making sense: The Chatty Web approach for global semantic agreements</rdfs:label>
+    <ggdvurfwejzoiplogphosbpqrj>
+      <opfzatwenfbapxxudrtpvkvvbn>
+        <rdf:first>
+          <j.0:Person rdf:ID="a29105611">
+            <rdfs:label>Karl Aberer</rdfs:label>
+            <j.0:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Karl Aberer</j.0:name>
+            <j.0:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Karl</j.0:firstName>
+            <gcoqoanagmgmheoknjzpzrhbpc rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Aberer</gcoqoanagmgmheoknjzpzrhbpc>
+          </j.0:Person>
+        </rdf:first>
+        <rdf:rest>
+          <opfzatwenfbapxxudrtpvkvvbn>
+            <rdf:first>
+              <j.0:Person rdf:ID="a98078619">
+                <rdfs:label>Philippe Cudré-Mauroux</rdfs:label>
+                <j.0:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Philippe Cudré-Mauroux</j.0:name>
+                <j.0:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Philippe</j.0:firstName>
+                <gcoqoanagmgmheoknjzpzrhbpc rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Cudré-Mauroux</gcoqoanagmgmheoknjzpzrhbpc>
+              </j.0:Person>
+            </rdf:first>
+            <rdf:rest>
+              <opfzatwenfbapxxudrtpvkvvbn>
+                <rdf:first>
+                  <j.0:Person rdf:ID="a337716610">
+                    <rdfs:label>Manfred Hauswirth</rdfs:label>
+                    <j.0:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Manfred Hauswirth</j.0:name>
+                    <j.0:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Manfred</j.0:firstName>
+                    <gcoqoanagmgmheoknjzpzrhbpc rdf:datatype=
+                    "http://www.w3.org/2001/XMLSchema#string"
+                    >Hauswirth</gcoqoanagmgmheoknjzpzrhbpc>
+                  </j.0:Person>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+              </opfzatwenfbapxxudrtpvkvvbn>
+            </rdf:rest>
+          </opfzatwenfbapxxudrtpvkvvbn>
+        </rdf:rest>
+      </opfzatwenfbapxxudrtpvkvvbn>
+    </ggdvurfwejzoiplogphosbpqrj>
+    <ezwvrangcmmjslvwclibrgmtar>
+      <bajgkeslotdvbbviacckpduqzr rdf:ID="a246119474">
+        <rdfs:label>Journal of Web Semantics</rdfs:label>
+        <j.0:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Journal of Web Semantics</j.0:name>
+        <shortName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >JWS</shortName>
+      </bajgkeslotdvbbviacckpduqzr>
+    </ezwvrangcmmjslvwclibrgmtar>
+    <sazkvkpclvyqurvwfziwgodtva>Start making sense: The Chatty Web approach for global semantic agreements</sazkvkpclvyqurvwfziwgodtva>
+    <wugjcwojlwvaymggmnbcycrtct>
+      <Date>
+        <pdlkfryhbztxggdoecqehvjehk rdf:datatype="http://www.w3.org/2001/XMLSchema#gMonth"
+        >--12</pdlkfryhbztxggdoecqehvjehk>
+        <kkhmwsaijojdfmizfhilidnvar rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear"
+        >2003</kkhmwsaijojdfmizfhilidnvar>
+      </Date>
+    </wugjcwojlwvaymggmnbcycrtct>
+  </cxfydiljurbqyabgcegvzjwwlf>
+  <rhovioavdtibetftcogvtncxcs rdf:ID="a64263824">
+    <rdfs:label>Bibster - A Semantics-Based Bibliographic Peer-to-Peer System</rdfs:label>
+    <ggdvurfwejzoiplogphosbpqrj>
+      <opfzatwenfbapxxudrtpvkvvbn>
+        <rdf:first>
+          <j.0:Person rdf:ID="a43836633">
+            <rdfs:label>Jeen Broekstra</rdfs:label>
+            <j.0:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Jeen Broekstra</j.0:name>
+            <j.0:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Jeen</j.0:firstName>
+            <gcoqoanagmgmheoknjzpzrhbpc rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Broekstra</gcoqoanagmgmheoknjzpzrhbpc>
+          </j.0:Person>
+        </rdf:first>
+        <rdf:rest>
+          <opfzatwenfbapxxudrtpvkvvbn>
+            <rdf:first rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#a712561038"/>
+            <rdf:rest>
+              <opfzatwenfbapxxudrtpvkvvbn>
+                <rdf:first>
+                  <j.0:Person rdf:ID="a94533498">
+                    <rdfs:label>Peter Haase</rdfs:label>
+                    <j.0:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Peter Haase</j.0:name>
+                    <j.0:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Peter</j.0:firstName>
+                    <gcoqoanagmgmheoknjzpzrhbpc rdf:datatype=
+                    "http://www.w3.org/2001/XMLSchema#string"
+                    >Haase</gcoqoanagmgmheoknjzpzrhbpc>
+                  </j.0:Person>
+                </rdf:first>
+                <rdf:rest>
+                  <opfzatwenfbapxxudrtpvkvvbn>
+                    <rdf:first>
+                      <j.0:Person rdf:ID="a944339054">
+                        <rdfs:label>Frank van Harmelen</rdfs:label>
+                        <j.0:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >Frank van Harmelen</j.0:name>
+                        <j.0:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >Frank</j.0:firstName>
+                        <gcoqoanagmgmheoknjzpzrhbpc rdf:datatype=
+                        "http://www.w3.org/2001/XMLSchema#string"
+                        >van Harmelen</gcoqoanagmgmheoknjzpzrhbpc>
+                      </j.0:Person>
+                    </rdf:first>
+                    <rdf:rest>
+                      <opfzatwenfbapxxudrtpvkvvbn>
+                        <rdf:first>
+                          <j.0:Person rdf:ID="a139477786">
+                            <rdfs:label>Maarten Menken</rdfs:label>
+                            <j.0:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                            >Maarten Menken</j.0:name>
+                            <j.0:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                            >Maarten</j.0:firstName>
+                            <gcoqoanagmgmheoknjzpzrhbpc rdf:datatype=
+                            "http://www.w3.org/2001/XMLSchema#string"
+                            >Menken</gcoqoanagmgmheoknjzpzrhbpc>
+                          </j.0:Person>
+                        </rdf:first>
+                        <rdf:rest>
+                          <opfzatwenfbapxxudrtpvkvvbn>
+                            <rdf:first>
+                              <j.0:Person rdf:ID="a958684218">
+                                <rdfs:label>Peter Mika</rdfs:label>
+                                <j.0:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                                >Peter Mika</j.0:name>
+                                <j.0:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                                >Peter</j.0:firstName>
+                                <gcoqoanagmgmheoknjzpzrhbpc rdf:datatype=
+                                "http://www.w3.org/2001/XMLSchema#string"
+                                >Mika</gcoqoanagmgmheoknjzpzrhbpc>
+                              </j.0:Person>
+                            </rdf:first>
+                            <rdf:rest>
+                              <opfzatwenfbapxxudrtpvkvvbn>
+                                <rdf:first>
+                                  <j.0:Person rdf:ID="a48552212">
+                                    <rdfs:label>Björn Schnizler</rdfs:label>
+                                    <j.0:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                                    >Björn Schnizler</j.0:name>
+                                    <j.0:firstName rdf:datatype=
+                                    "http://www.w3.org/2001/XMLSchema#string"
+                                    >Björn</j.0:firstName>
+                                    <gcoqoanagmgmheoknjzpzrhbpc
+                                     rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                                    >Schnizler</gcoqoanagmgmheoknjzpzrhbpc>
+                                  </j.0:Person>
+                                </rdf:first>
+                                <rdf:rest>
+                                  <opfzatwenfbapxxudrtpvkvvbn>
+                                    <rdf:first>
+                                      <j.0:Person rdf:ID="a3105947">
+                                        <rdfs:label>Ronny Siebes</rdfs:label>
+                                        <j.0:name rdf:datatype=
+                                        "http://www.w3.org/2001/XMLSchema#string"
+                                        >Ronny Siebes</j.0:name>
+                                        <j.0:firstName rdf:datatype=
+                                        "http://www.w3.org/2001/XMLSchema#string"
+                                        >Ronny</j.0:firstName>
+                                        <gcoqoanagmgmheoknjzpzrhbpc
+                                         rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                                        >Siebes</gcoqoanagmgmheoknjzpzrhbpc>
+                                      </j.0:Person>
+                                    </rdf:first>
+                                    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                  </opfzatwenfbapxxudrtpvkvvbn>
+                                </rdf:rest>
+                              </opfzatwenfbapxxudrtpvkvvbn>
+                            </rdf:rest>
+                          </opfzatwenfbapxxudrtpvkvvbn>
+                        </rdf:rest>
+                      </opfzatwenfbapxxudrtpvkvvbn>
+                    </rdf:rest>
+                  </opfzatwenfbapxxudrtpvkvvbn>
+                </rdf:rest>
+              </opfzatwenfbapxxudrtpvkvvbn>
+            </rdf:rest>
+          </opfzatwenfbapxxudrtpvkvvbn>
+        </rdf:rest>
+      </opfzatwenfbapxxudrtpvkvvbn>
+    </ggdvurfwejzoiplogphosbpqrj>
+    <uoippdxuokwfllmzxncscotfzl>
+      <pgymrwsujdhalsthklscvofawm rdf:ID="a060097576">
+        <rdfs:label>Proceedings of the SemPGrid 04 Workshop</rdfs:label>
+        <sazkvkpclvyqurvwfziwgodtva>Proceedings of the SemPGrid 04 Workshop</sazkvkpclvyqurvwfziwgodtva>
+        <wugjcwojlwvaymggmnbcycrtct>
+          <Date>
+            <kkhmwsaijojdfmizfhilidnvar rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear"
+            >2004</kkhmwsaijojdfmizfhilidnvar>
+          </Date>
+        </wugjcwojlwvaymggmnbcycrtct>
+        <event>
+          <zsusshgcadkabagobadwagedlq rdf:ID="spg04">
+            <rdfs:label>SemPGrid 04 Workshop</rdfs:label>
+            <sppkzjhtwhqzizewcfgoguoknk>SemPGrid 04 Workshop</sppkzjhtwhqzizewcfgoguoknk>
+            <uwukbuyevtckewwkxcovhserqj>
+              <khhvtebjstvpeajfelpfwtpkwg>
+                <jzxnrcmvfypbewlhpjqupoxfhb>New-York</jzxnrcmvfypbewlhpjqupoxfhb>
+                <omxqedclwnokjbztzpepubisnd>NY</omxqedclwnokjbztzpepubisnd>
+                <country>US</country>
+              </khhvtebjstvpeajfelpfwtpkwg>
+            </uwukbuyevtckewwkxcovhserqj>
+            <wugjcwojlwvaymggmnbcycrtct>
+              <Date>
+                <pdlkfryhbztxggdoecqehvjehk rdf:datatype="http://www.w3.org/2001/XMLSchema#gMonth"
+                >--05</pdlkfryhbztxggdoecqehvjehk>
+                <kkhmwsaijojdfmizfhilidnvar rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear"
+                >2004</kkhmwsaijojdfmizfhilidnvar>
+              </Date>
+            </wugjcwojlwvaymggmnbcycrtct>
+          </zsusshgcadkabagobadwagedlq>
+        </event>
+      </pgymrwsujdhalsthklscvofawm>
+    </uoippdxuokwfllmzxncscotfzl>
+    <sazkvkpclvyqurvwfziwgodtva>Bibster - A Semantics-Based Bibliographic Peer-to-Peer System</sazkvkpclvyqurvwfziwgodtva>
+  </rhovioavdtibetftcogvtncxcs>
+  <cxfydiljurbqyabgcegvzjwwlf rdf:ID="a456080390">
+    <rdfs:label>On dynamically generated ontology translators in agent communication</rdfs:label>
+    <ggdvurfwejzoiplogphosbpqrj>
+      <opfzatwenfbapxxudrtpvkvvbn>
+        <rdf:first>
+          <j.0:Person rdf:ID="a093016135">
+            <rdfs:label>Rogier Eijk</rdfs:label>
+            <j.0:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Rogier Eijk</j.0:name>
+            <j.0:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Rogier</j.0:firstName>
+            <gcoqoanagmgmheoknjzpzrhbpc rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Eijk</gcoqoanagmgmheoknjzpzrhbpc>
+          </j.0:Person>
+        </rdf:first>
+        <rdf:rest>
+          <opfzatwenfbapxxudrtpvkvvbn>
+            <rdf:first>
+              <j.0:Person rdf:ID="a572406328">
+                <rdfs:label>Frank Boer</rdfs:label>
+                <j.0:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Frank Boer</j.0:name>
+                <j.0:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Frank</j.0:firstName>
+                <gcoqoanagmgmheoknjzpzrhbpc rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Boer</gcoqoanagmgmheoknjzpzrhbpc>
+              </j.0:Person>
+            </rdf:first>
+            <rdf:rest>
+              <opfzatwenfbapxxudrtpvkvvbn>
+                <rdf:first>
+                  <j.0:Person rdf:ID="a086379337">
+                    <rdfs:label>Wiebe Hoek</rdfs:label>
+                    <j.0:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Wiebe Hoek</j.0:name>
+                    <j.0:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Wiebe</j.0:firstName>
+                    <gcoqoanagmgmheoknjzpzrhbpc rdf:datatype=
+                    "http://www.w3.org/2001/XMLSchema#string"
+                    >Hoek</gcoqoanagmgmheoknjzpzrhbpc>
+                  </j.0:Person>
+                </rdf:first>
+                <rdf:rest>
+                  <opfzatwenfbapxxudrtpvkvvbn>
+                    <rdf:first>
+                      <j.0:Person rdf:ID="a04570373">
+                        <rdfs:label>John-Jules Meyer</rdfs:label>
+                        <j.0:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >John-Jules Meyer</j.0:name>
+                        <j.0:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >John-Jules</j.0:firstName>
+                        <gcoqoanagmgmheoknjzpzrhbpc rdf:datatype=
+                        "http://www.w3.org/2001/XMLSchema#string"
+                        >Meyer</gcoqoanagmgmheoknjzpzrhbpc>
+                      </j.0:Person>
+                    </rdf:first>
+                    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                  </opfzatwenfbapxxudrtpvkvvbn>
+                </rdf:rest>
+              </opfzatwenfbapxxudrtpvkvvbn>
+            </rdf:rest>
+          </opfzatwenfbapxxudrtpvkvvbn>
+        </rdf:rest>
+      </opfzatwenfbapxxudrtpvkvvbn>
+    </ggdvurfwejzoiplogphosbpqrj>
+    <ezwvrangcmmjslvwclibrgmtar>
+      <bajgkeslotdvbbviacckpduqzr rdf:ID="a362042121">
+        <rdfs:label>International journal of intelligent system</rdfs:label>
+        <sppkzjhtwhqzizewcfgoguoknk rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >International journal of intelligent system</sppkzjhtwhqzizewcfgoguoknk>
+        <shortName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >IJIS</shortName>
+      </bajgkeslotdvbbviacckpduqzr>
+    </ezwvrangcmmjslvwclibrgmtar>
+    <sazkvkpclvyqurvwfziwgodtva>On dynamically generated ontology translators in agent communication</sazkvkpclvyqurvwfziwgodtva>
+    <pages>
+      <pexiiksdndypmhdeaklsbcmyyo>
+        <jquzheirksnhxejorrhmvcpzgx rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >587</jquzheirksnhxejorrhmvcpzgx>
+        <rawlhtquykevfjebnuaemieadu rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >607</rawlhtquykevfjebnuaemieadu>
+      </pexiiksdndypmhdeaklsbcmyyo>
+    </pages>
+    <wugjcwojlwvaymggmnbcycrtct>
+      <Date>
+        <pdlkfryhbztxggdoecqehvjehk rdf:datatype="http://www.w3.org/2001/XMLSchema#gMonth"
+        >--12</pdlkfryhbztxggdoecqehvjehk>
+        <kkhmwsaijojdfmizfhilidnvar rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear"
+        >2001</kkhmwsaijojdfmizfhilidnvar>
+      </Date>
+    </wugjcwojlwvaymggmnbcycrtct>
+  </cxfydiljurbqyabgcegvzjwwlf>
+  <rhovioavdtibetftcogvtncxcs rdf:ID="a439508789">
+    <rdfs:label>Measuring Similarity between Ontologies</rdfs:label>
+    <ggdvurfwejzoiplogphosbpqrj>
+      <opfzatwenfbapxxudrtpvkvvbn>
+        <rdf:first>
+          <j.0:Person rdf:ID="a85228505">
+            <rdfs:label>Alexander Mädche</rdfs:label>
+            <j.0:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Alexander Mädche</j.0:name>
+            <j.0:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Alexander</j.0:firstName>
+            <gcoqoanagmgmheoknjzpzrhbpc rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Mädche</gcoqoanagmgmheoknjzpzrhbpc>
+          </j.0:Person>
+        </rdf:first>
+        <rdf:rest>
+          <opfzatwenfbapxxudrtpvkvvbn>
+            <rdf:first rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#a71003986"/>
+            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+          </opfzatwenfbapxxudrtpvkvvbn>
+        </rdf:rest>
+      </opfzatwenfbapxxudrtpvkvvbn>
+    </ggdvurfwejzoiplogphosbpqrj>
+    <uoippdxuokwfllmzxncscotfzl>
+      <pgymrwsujdhalsthklscvofawm rdf:ID="a72192307">
+        <rdfs:label>Proc. Of the 13th Int. Conference on Knowledge Engineering and Management (EKAW-2002)</rdfs:label>
+        <exkdxjoytlsrfyodwlncicqovi rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#a131020767"/>
+        <sazkvkpclvyqurvwfziwgodtva>Proc. Of the 13th Int. Conference on Knowledge Engineering and Management (EKAW-2002)</sazkvkpclvyqurvwfziwgodtva>
+        <event>
+          <zsusshgcadkabagobadwagedlq rdf:ID="a72192307c">
+            <rdfs:label>13th Int. Conference on Knowledge Engineering and Management (EKAW-2002)</rdfs:label>
+            <sppkzjhtwhqzizewcfgoguoknk>Int. Conference on Knowledge Engineering and Management</sppkzjhtwhqzizewcfgoguoknk>
+            <shortName>EKAW</shortName>
+            <nqbmrizcwkunxsrzjnchdgunkk>13</nqbmrizcwkunxsrzjnchdgunkk>
+            <wugjcwojlwvaymggmnbcycrtct>
+              <Date>
+                <pdlkfryhbztxggdoecqehvjehk rdf:datatype="http://www.w3.org/2001/XMLSchema#gMonth"
+                >--10</pdlkfryhbztxggdoecqehvjehk>
+                <kkhmwsaijojdfmizfhilidnvar rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear"
+                >2002</kkhmwsaijojdfmizfhilidnvar>
+              </Date>
+            </wugjcwojlwvaymggmnbcycrtct>
+          </zsusshgcadkabagobadwagedlq>
+        </event>
+        <wugjcwojlwvaymggmnbcycrtct>
+          <Date>
+            <kkhmwsaijojdfmizfhilidnvar rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear"
+            >2002</kkhmwsaijojdfmizfhilidnvar>
+          </Date>
+        </wugjcwojlwvaymggmnbcycrtct>
+      </pgymrwsujdhalsthklscvofawm>
+    </uoippdxuokwfllmzxncscotfzl>
+    <sazkvkpclvyqurvwfziwgodtva>Measuring Similarity between Ontologies</sazkvkpclvyqurvwfziwgodtva>
+  </rhovioavdtibetftcogvtncxcs>
+  <dkhhspdcagmljkiyfenqklpxcq rdf:ID="a71568377">
+    <rdfs:label>Database integration: the key to data interoperability</rdfs:label>
+    <ggdvurfwejzoiplogphosbpqrj>
+      <opfzatwenfbapxxudrtpvkvvbn>
+        <rdf:first>
+          <j.0:Person rdf:ID="a11090777">
+            <rdfs:label>Christine Parent</rdfs:label>
+            <j.0:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Christine Parent</j.0:name>
+            <j.0:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Christine</j.0:firstName>
+            <gcoqoanagmgmheoknjzpzrhbpc rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Parent</gcoqoanagmgmheoknjzpzrhbpc>
+          </j.0:Person>
+        </rdf:first>
+        <rdf:rest>
+          <opfzatwenfbapxxudrtpvkvvbn>
+            <rdf:first>
+              <j.0:Person rdf:ID="a431956276">
+                <rdfs:label>Stefano Spaccapietra</rdfs:label>
+                <j.0:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Stefano Spaccapietra</j.0:name>
+                <j.0:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Stefano</j.0:firstName>
+                <gcoqoanagmgmheoknjzpzrhbpc rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Spaccapietra</gcoqoanagmgmheoknjzpzrhbpc>
+              </j.0:Person>
+            </rdf:first>
+            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+          </opfzatwenfbapxxudrtpvkvvbn>
+        </rdf:rest>
+      </opfzatwenfbapxxudrtpvkvvbn>
+    </ggdvurfwejzoiplogphosbpqrj>
+    <paliclnedyryqqldzbhminyity>
+      <iujovtiraxmqiyelnioabcaigs rdf:ID="a108048723">
+        <rdfs:label>Object-Oriented Data Modeling</rdfs:label>
+        <exkdxjoytlsrfyodwlncicqovi>
+          <Publisher rdf:ID="a85849488">
+            <rdfs:label>The MIT Press</rdfs:label>
+            <sppkzjhtwhqzizewcfgoguoknk rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >The MIT Press</sppkzjhtwhqzizewcfgoguoknk>
+            <wyjgabxrjytpailxuhuhzuqbqi>
+              <khhvtebjstvpeajfelpfwtpkwg>
+                <jzxnrcmvfypbewlhpjqupoxfhb rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Cambridge</jzxnrcmvfypbewlhpjqupoxfhb>
+                <omxqedclwnokjbztzpepubisnd rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >MA</omxqedclwnokjbztzpepubisnd>
+                <country rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >US</country>
+              </khhvtebjstvpeajfelpfwtpkwg>
+            </wyjgabxrjytpailxuhuhzuqbqi>
+          </Publisher>
+        </exkdxjoytlsrfyodwlncicqovi>
+        <sazkvkpclvyqurvwfziwgodtva>Object-Oriented Data Modeling</sazkvkpclvyqurvwfziwgodtva>
+        <wugjcwojlwvaymggmnbcycrtct>
+          <Date>
+            <kkhmwsaijojdfmizfhilidnvar rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear"
+            >2000</kkhmwsaijojdfmizfhilidnvar>
+          </Date>
+        </wugjcwojlwvaymggmnbcycrtct>
+      </iujovtiraxmqiyelnioabcaigs>
+    </paliclnedyryqqldzbhminyity>
+    <sazkvkpclvyqurvwfziwgodtva>Database integration: the key to data interoperability</sazkvkpclvyqurvwfziwgodtva>
+    <lhhbczlitcvokfawtlpvvlyngd>
+      <opfzatwenfbapxxudrtpvkvvbn>
+        <rdf:first rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#a431956276"/>
+        <rdf:rest>
+          <opfzatwenfbapxxudrtpvkvvbn>
+            <rdf:first>
+              <j.0:Person rdf:ID="a431956276b">
+                <rdfs:label>Mike Papazoglou</rdfs:label>
+                <j.0:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Mike Papazoglou</j.0:name>
+                <j.0:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Mike</j.0:firstName>
+                <gcoqoanagmgmheoknjzpzrhbpc rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Papazoglou</gcoqoanagmgmheoknjzpzrhbpc>
+              </j.0:Person>
+            </rdf:first>
+            <rdf:rest>
+              <opfzatwenfbapxxudrtpvkvvbn>
+                <rdf:first>
+                  <j.0:Person rdf:ID="a431956276c">
+                    <rdfs:label>Zahir Tari</rdfs:label>
+                    <j.0:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Zahir Tari</j.0:name>
+                    <j.0:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Zahir</j.0:firstName>
+                    <gcoqoanagmgmheoknjzpzrhbpc rdf:datatype=
+                    "http://www.w3.org/2001/XMLSchema#string"
+                    >Tari</gcoqoanagmgmheoknjzpzrhbpc>
+                  </j.0:Person>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+              </opfzatwenfbapxxudrtpvkvvbn>
+            </rdf:rest>
+          </opfzatwenfbapxxudrtpvkvvbn>
+        </rdf:rest>
+      </opfzatwenfbapxxudrtpvkvvbn>
+    </lhhbczlitcvokfawtlpvvlyngd>
+  </dkhhspdcagmljkiyfenqklpxcq>
+  <cxfydiljurbqyabgcegvzjwwlf rdf:ID="a475526642">
+    <rdfs:label>Binary Codes capable of correcting deletions, insertions, and reversals</rdfs:label>
+    <ggdvurfwejzoiplogphosbpqrj>
+      <opfzatwenfbapxxudrtpvkvvbn>
+        <rdf:first>
+          <j.0:Person rdf:ID="a74993404">
+            <rdfs:label>I. V. Levenshtein</rdfs:label>
+            <j.0:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >I. V. Levenshtein</j.0:name>
+            <j.0:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >I. V.</j.0:firstName>
+            <gcoqoanagmgmheoknjzpzrhbpc rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Levenshtein</gcoqoanagmgmheoknjzpzrhbpc>
+          </j.0:Person>
+        </rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </opfzatwenfbapxxudrtpvkvvbn>
+    </ggdvurfwejzoiplogphosbpqrj>
+    <ezwvrangcmmjslvwclibrgmtar>
+      <bajgkeslotdvbbviacckpduqzr rdf:ID="a70981683">
+        <rdfs:label>Cybernetics and Control Theory</rdfs:label>
+        <sppkzjhtwhqzizewcfgoguoknk rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Cybernetics and Control Theory</sppkzjhtwhqzizewcfgoguoknk>
+      </bajgkeslotdvbbviacckpduqzr>
+    </ezwvrangcmmjslvwclibrgmtar>
+    <sazkvkpclvyqurvwfziwgodtva>Binary Codes capable of correcting deletions, insertions, and reversals</sazkvkpclvyqurvwfziwgodtva>
+    <wugjcwojlwvaymggmnbcycrtct>
+      <Date>
+        <kkhmwsaijojdfmizfhilidnvar rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear"
+        >1996</kkhmwsaijojdfmizfhilidnvar>
+      </Date>
+    </wugjcwojlwvaymggmnbcycrtct>
+  </cxfydiljurbqyabgcegvzjwwlf>
+  <cxfydiljurbqyabgcegvzjwwlf rdf:ID="a492378321">
+    <rdfs:label>{P-Grid: A Self-organizing Structured P2P System}</rdfs:label>
+    <ggdvurfwejzoiplogphosbpqrj>
+      <opfzatwenfbapxxudrtpvkvvbn>
+        <rdf:first rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#a29105611"/>
+        <rdf:rest>
+          <opfzatwenfbapxxudrtpvkvvbn>
+            <rdf:first rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#a98078619"/>
+            <rdf:rest>
+              <opfzatwenfbapxxudrtpvkvvbn>
+                <rdf:first>
+                  <j.0:Person rdf:ID="a70955601">
+                    <rdfs:label>A. Datta</rdfs:label>
+                    <j.0:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >A. Datta</j.0:name>
+                    <j.0:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >A.</j.0:firstName>
+                    <gcoqoanagmgmheoknjzpzrhbpc rdf:datatype=
+                    "http://www.w3.org/2001/XMLSchema#string"
+                    >Datta</gcoqoanagmgmheoknjzpzrhbpc>
+                  </j.0:Person>
+                </rdf:first>
+                <rdf:rest>
+                  <opfzatwenfbapxxudrtpvkvvbn>
+                    <rdf:first>
+                      <j.0:Person rdf:ID="a39510672">
+                        <rdfs:label>Z. Despotovic</rdfs:label>
+                        <j.0:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >Z. Despotovic</j.0:name>
+                        <j.0:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >Z.</j.0:firstName>
+                        <gcoqoanagmgmheoknjzpzrhbpc rdf:datatype=
+                        "http://www.w3.org/2001/XMLSchema#string"
+                        >Despotovic</gcoqoanagmgmheoknjzpzrhbpc>
+                      </j.0:Person>
+                    </rdf:first>
+                    <rdf:rest>
+                      <opfzatwenfbapxxudrtpvkvvbn>
+                        <rdf:first rdf:resource="http://oaei.ontologymatching.org/2016benchmarks/biblio/4//202-8/onto.rdf#a337716610"/>
+                        <rdf:rest>
+                          <opfzatwenfbapxxudrtpvkvvbn>
+                            <rdf:first>
+                              <j.0:Person rdf:ID="a885257047">
+                                <rdfs:label>M. Punceva</rdfs:label>
+                                <j.0:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                                >M. Punceva</j.0:name>
+                                <j.0:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                                >M.</j.0:firstName>
+                                <gcoqoanagmgmheoknjzpzrhbpc rdf:datatype=
+                                "http://www.w3.org/2001/XMLSchema#string"
+                                >Punceva</gcoqoanagmgmheoknjzpzrhbpc>
+                              </j.0:Person>
+                            </rdf:first>
+                            <rdf:rest>
+                              <opfzatwenfbapxxudrtpvkvvbn>
+                                <rdf:first>
+                                  <j.0:Person rdf:ID="a250331360">
+                                    <rdfs:label>R. Schmidt</rdfs:label>
+                                    <j.0:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                                    >R. Schmidt</j.0:name>
+                                    <j.0:firstName rdf:datatype=
+                                    "http://www.w3.org/2001/XMLSchema#string"
+                                    >R.</j.0:firstName>
+                                    <gcoqoanagmgmheoknjzpzrhbpc
+                                     rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                                    >Schmidt</gcoqoanagmgmheoknjzpzrhbpc>
+                                  </j.0:Person>
+                                </rdf:first>
+                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                              </opfzatwenfbapxxudrtpvkvvbn>
+                            </rdf:rest>
+                          </opfzatwenfbapxxudrtpvkvvbn>
+                        </rdf:rest>
+                      </opfzatwenfbapxxudrtpvkvvbn>
+                    </rdf:rest>
+                  </opfzatwenfbapxxudrtpvkvvbn>
+                </rdf:rest>
+              </opfzatwenfbapxxudrtpvkvvbn>
+            </rdf:rest>
+          </opfzatwenfbapxxudrtpvkvvbn>
+        </rdf:rest>
+      </opfzatwenfbapxxudrtpvkvvbn>
+    </ggdvurfwejzoiplogphosbpqrj>
+    <ezwvrangcmmjslvwclibrgmtar>
+      <bajgkeslotdvbbviacckpduqzr rdf:ID="a674639524">
+        <rdfs:label>ACM SIGMOD Record</rdfs:label>
+        <sppkzjhtwhqzizewcfgoguoknk rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >ACM SIGMOD Record</sppkzjhtwhqzizewcfgoguoknk>
+      </bajgkeslotdvbbviacckpduqzr>
+    </ezwvrangcmmjslvwclibrgmtar>
+    <sazkvkpclvyqurvwfziwgodtva>{P-Grid}: A Self-organizing Structured P2P System</sazkvkpclvyqurvwfziwgodtva>
+    <wugjcwojlwvaymggmnbcycrtct>
+      <Date>
+        <kkhmwsaijojdfmizfhilidnvar rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear"
+        >2003</kkhmwsaijojdfmizfhilidnvar>
+      </Date>
+    </wugjcwojlwvaymggmnbcycrtct>
+  </cxfydiljurbqyabgcegvzjwwlf>
+</rdf:RDF>

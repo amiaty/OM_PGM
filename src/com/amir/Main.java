@@ -6,7 +6,6 @@ import fr.inrialpes.exmo.align.impl.renderer.OWLAxiomsRendererVisitor;
 import fr.inrialpes.exmo.align.impl.renderer.RDFRendererVisitor;
 import fr.inrialpes.exmo.align.parser.AlignmentParser;
 import org.apache.commons.io.filefilter.WildcardFileFilter;
-import org.apache.jena.base.Sys;
 import org.semanticweb.owl.align.Alignment;
 import org.semanticweb.owl.align.AlignmentVisitor;
 import org.semanticweb.owl.align.Evaluator;
@@ -16,7 +15,6 @@ import org.slf4j.LoggerFactory;
 import java.io.*;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.*;
 
 @SuppressWarnings("Duplicates")
@@ -60,11 +58,11 @@ public class Main {
     private static void testAlign() {
         try {
             //init and matching
-            URI uri1 = new URI("file:./res/example/myOnto.owl");
-            URI uri2 = new URI("file:./res/example/edu.mit.visus.bibtex.owl");
-            //URI uri1 = new URI("file:./res/anatomy-onto/mouse.owl");
-            //URI uri2 = new URI("file:./res/anatomy-onto/human.owl");
-            AMAlignment alignment = new AMAlignment();
+            //URI uri1 = new URI("file:./res/example/myOnto.owl");
+            //URI uri2 = new URI("file:./res/example/edu.mit.visus.bibtex.owl");
+            URI uri1 = new URI("file:./res/anatomy-onto/mouse.owl");
+            URI uri2 = new URI("file:./res/anatomy-onto/human.owl");
+            AMAlignment2 alignment = new AMAlignment2();
             alignment.init(uri1, uri2);
 
             long startTime = System.currentTimeMillis();
@@ -73,8 +71,8 @@ public class Main {
             System.out.println("Our method nCells: " + alignment.nbCells());
             //matching output
             //OutputStream stream = System.out;
-            //OutputStream stream = new FileOutputStream( "./res/anatomy-alignments/OurResult.rdf", false );
-            OutputStream stream = new FileOutputStream( "./res/example/OurResult.rdf", false );
+            OutputStream stream = new FileOutputStream( "./res/anatomy-alignments/OurResult.rdf", false );
+            //OutputStream stream = new FileOutputStream( "./res/example/OurResult.rdf", false );
             PrintWriter printWriter = new PrintWriter(new BufferedWriter(new OutputStreamWriter( stream, "UTF-8" )),false);
             AlignmentVisitor rendererVisitor = new RDFRendererVisitor(printWriter);
             alignment.render(rendererVisitor);
@@ -84,8 +82,8 @@ public class Main {
 
             //evaluation
             AlignmentParser alignmentParser = new AlignmentParser(0);
-            //Alignment ref = alignmentParser.parse("file:./res/anatomy-onto/reference.rdf");
-            Alignment ref = alignmentParser.parse("file:./res/example/reference.rdf");
+            Alignment ref = alignmentParser.parse("file:./res/anatomy-onto/reference.rdf");
+            //Alignment ref = alignmentParser.parse("file:./res/example/reference.rdf");
             ref.init(uri1, uri2);
             ref.harden(0.01);
             Evaluator evaluator = new PRecEvaluator(ref, alignment);
