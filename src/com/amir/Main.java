@@ -16,6 +16,8 @@ import java.io.*;
 
 import java.net.URI;
 import java.util.*;
+import info.debatty.java.stringsimilarity.*;
+import fr.inrialpes.exmo.ontosim.string.StringDistances;
 
 @SuppressWarnings("Duplicates")
 public class Main {
@@ -298,6 +300,19 @@ public class Main {
     }
     // Choice number 9
     private static void testJWNL() {
+        NormalizedLevenshtein levenshtein = new NormalizedLevenshtein();
+        NGram nGram = new NGram(3);
+        SorensenDice sorensenDice = new SorensenDice();
+        JaroWinkler jaroWinkler = new JaroWinkler();
+        Jaccard jaccard = new Jaccard();
+        Cosine cosine = new Cosine();
+        System.out.println(levenshtein.similarity("sacral vertebra 4", "s4 vertebra"));
+        System.out.println(1.0 - nGram.distance("sacral vertebra 4", "s4 vertebra"));
+        System.out.println(sorensenDice.similarity("sacral vertebra 4", "s4 vertebra"));
+        System.out.println(jaroWinkler.similarity("sacral vertebra 4", "s4 vertebra"));
+        System.out.println(cosine.similarity("sacral vertebra 4", "s4 vertebra"));
+        System.out.println(jaccard.similarity("sacral vertebra 4", "s4 vertebra"));
+
         JWNLDistances Dist = new JWNLDistances();
         Dist.Initialize("./dict", "3.1");
         System.out.println(Dist.computeSimilarity("blue", "sky"));

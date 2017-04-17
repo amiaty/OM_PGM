@@ -7,17 +7,17 @@
 package com.amir;
 
 import fr.inrialpes.exmo.align.impl.DistanceAlignment;
-import fr.inrialpes.exmo.align.impl.renderer.RDFRendererVisitor;
 import fr.inrialpes.exmo.ontosim.string.JWNLDistances;
 import fr.inrialpes.exmo.ontosim.string.StringDistances;
 import fr.inrialpes.exmo.ontowrap.HeavyLoadedOntology;
+import info.debatty.java.stringsimilarity.interfaces.NormalizedStringDistance;
+import info.debatty.java.stringsimilarity.interfaces.StringDistance;
 import org.semanticweb.owl.align.Alignment;
 import org.semanticweb.owl.align.AlignmentException;
 import org.semanticweb.owl.align.AlignmentProcess;
-import org.semanticweb.owl.util.OWLManager;
 import org.semanticweb.owlapi.model.*;
 import uk.ac.manchester.cs.owl.owlapi.*;
-
+import info.debatty.java.stringsimilarity.*;
 
 import java.util.*;
 
@@ -119,22 +119,27 @@ public class AMAlignment2 extends DistanceAlignment implements AlignmentProcess 
                 entity2ss.add(names);
             }
 
-            double ii = 0, m1, m2;
-            double step = 100.0 / nbEntities1;
+            LinkedList<NormalizedStringDistance> algos = new LinkedList<>();
+            algos.add(new NormalizedLevenshtein());
+            //algos.add(new JaroWinkler());
+            //algos.add(new NGram(3));
+            //algos.add(new Jaccard());
+            //algos.add(new SorensenDice());
+            //algos.add(new Cosine());
 
             System.out.println("Preparing:");
-            // make similarity matrix
+
             int i, j;
+            double ii = 0, m, step = 100.0 / nbEntities1;
+
+            // make similarity matrix
             for( i = 0; i < nbEntities1; ++i, ii += step) {
                 for (j = 0; j < nbEntities2; ++j) {
-                    m1 = 0;
+                    m = 0;
                     for(String s1 : entity1ss.get(i))
-                        for (String s2 : entity2ss.get(j)) {
-                            m1 = Math.max(m1, 1.0 - StringDistances.levenshteinDistance(s1, s2));
-                            //m2 = Math.min(1.0, 1.0 - StringDistances.needlemanWunsch2Distance(s1, s2));
-                            //m1 = Math.max(m1, m2);
-                        }
-                    matrix[i][j] = m1;
+                        for (String s2 : entity2ss.get(j))
+                            for (NormalizedStringDistance algo : algos) m = Math.max(m, 1.0 - algo.distance(s1, s2));
+                    matrix[i][j] = m;
                 }
                 System.out.print(String.format("\r%d%% completed!", (int)(ii + step)));
             }
@@ -147,8 +152,8 @@ public class AMAlignment2 extends DistanceAlignment implements AlignmentProcess 
             if(Objects.equals(p1, "class")) {
                 for (i = 0; i < nbEntities1; ++i) {
                     Set<IRI> temp = new HashSet<>();
-                    for (Object ob: ((OWLClassImpl) entity1o[i]).getSuperClasses((OWLOntology) heavyOntology1.getOntology())) {
-                        IRI iri = ((OWLObject)ob).getClassesInSignature().iterator().next().getIRI();
+                    for (OWLObject ob: ((OWLClassImpl) entity1o[i]).getSuperClasses((OWLOntology) heavyOntology1.getOntology())) {
+                        IRI iri = ob.getClassesInSignature().iterator().next().getIRI();
                         if(! iri.toString().endsWith("Thing"))
                             temp.add(iri);
                     }
@@ -168,9 +173,9 @@ public class AMAlignment2 extends DistanceAlignment implements AlignmentProcess 
             }
 
             System.out.println("\nRunning SA:");
-            double threshold = 0.50;
+            double threshold = 0.70;
             SimulatedAnnealing SA = new SimulatedAnnealing(matrix, supO1, supO2, subO1, subO2, entity1o, entity2o);
-            SA.solve(20);
+            SA.solve(150);
             List<Pair<Integer, Integer>>  result = SA.getSolution();
             System.out.println("\nSA finished.");
             for (Pair<Integer, Integer> item: result)
