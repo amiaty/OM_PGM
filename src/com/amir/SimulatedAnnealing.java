@@ -14,7 +14,7 @@ public class SimulatedAnnealing {
     private double[][] similarity;
     private List<Integer> sol;
     private int row, col;
-    private double threshold = 0.3;
+    private double threshold = 0.01;
     private List<Set> supO1;
     private List<Set> supO2;
     private List<Set> subO1;
@@ -69,7 +69,7 @@ public class SimulatedAnnealing {
         sol = best;
     }
     public List<Pair<Integer, Integer>> getSolution() {
-        return extractSolution(sol);
+        return extractSolutionFinal(sol);
     }
     private List<Integer> successor(final List<Integer> curr) {
         int batchSz = Math.min(4, row);
@@ -81,19 +81,31 @@ public class SimulatedAnnealing {
     }
     private double getFitness(List<Integer> S) {
         double sum2 = 0, sum3 = 0;
-        double reward = 1, sum1 = 0;
+        double reward, sum1 = 0;
         List<Pair<Integer, Integer>> SS = extractSolution(S);
         for (Pair<Integer, Integer> item: SS) {
-/*
-            if(supO1.size() != 0) {
-                for (Object leftClass : supO1.get(item.getL()))
-                    for (Object rightClass : supO2.get(item.getR()))
-                        if (isMatched((IRI)leftClass, (IRI)rightClass, SS)) {
-                            sum2 += reward;
+
+            if(similarity[item.getL()][item.getR()] > 0.8) {
+                sum1 += similarity[item.getL()][item.getR()];
+                continue;
+            }
+
+            if(supO1.size() != 0 && similarity[item.getL()][item.getR()] > 0.5) {
+                for (Object leftClass : supO1.get(item.getL())) {
+                    reward = .0;
+                    for (Object rightClass : supO2.get(item.getR())) {
+                        reward = Matched((IRI) leftClass, (IRI) rightClass, SS);
+                        if (reward != -1.0) {
                             break;
                         }
+                    }
+                    if(reward > 0.9){
+                        sum2 += similarity[item.getL()][item.getR()];
+                        break;
+                    }
+                }
             }
-*/
+
             /*
             if(subO1.size() != 0) {
                 for (Object leftClass : subO1.get(item.getL()))
@@ -104,13 +116,42 @@ public class SimulatedAnnealing {
                         }
             }
             */
-            sum1 += similarity[item.getL()][item.getR()];
+
+            //sum1 += similarity[item.getL()][item.getR()];
         }
-        double sum4 = (row - SS.size()) * 100;
-        return sum1 * 150 + sum2 * 10 + sum3 + sum4;
+        return sum1 * 150 + sum2 * 100 + sum3;
     }
     private List<Integer> generateInitSol(){
         return random.ints(0, row).distinct().limit(row).boxed().collect(Collectors.toCollection(ArrayList::new));
+    }
+    private List<Pair<Integer, Integer>> extractSolutionFinal(List<Integer> visitOrder){
+        List<Pair<Integer, Integer>> SS = extractSolution(visitOrder);
+        List<Pair<Integer, Integer>> res = new ArrayList<>();
+        double reward;
+        for (Pair<Integer, Integer> item: SS) {
+
+            if(similarity[item.getL()][item.getR()] > 0.8) {
+                res.add(item);
+                continue;
+            }
+            if(supO1.size() != 0 && similarity[item.getL()][item.getR()] > 0.5) {
+                for (Object leftClass : supO1.get(item.getL())) {
+                    reward = 0;
+                    for (Object rightClass : supO2.get(item.getR())) {
+                        reward = Matched((IRI) leftClass, (IRI) rightClass, SS);
+                        if (reward != -1.0) {
+                            break;
+                        }
+                    }
+                    if(reward > 0.9)
+                    {
+                        res.add(item);
+                        break;
+                    }
+                }
+            }
+        }
+        return res;
     }
     private List<Pair<Integer, Integer>> extractSolution(List<Integer> visitOrder){
 
@@ -139,5 +180,10 @@ public class SimulatedAnnealing {
         for(Pair<Integer, Integer> item: ref)
             if(((OWLClass)class1o[item.getL()]).getIRI() == o1 && ((OWLClass)class2o[item.getR()]).getIRI() == o2) return true;
         return false;
+    }
+    private double Matched(IRI o1, IRI o2, List<Pair<Integer, Integer>> ref){
+        for(Pair<Integer, Integer> item: ref)
+            if(((OWLClass)class1o[item.getL()]).getIRI() == o1 && ((OWLClass)class2o[item.getR()]).getIRI() == o2) return similarity[item.getL()][item.getR()];
+        return -1;
     }
 }

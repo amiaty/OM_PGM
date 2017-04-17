@@ -162,8 +162,8 @@ public class AMAlignment2 extends DistanceAlignment implements AlignmentProcess 
                 }
                 for (i = 0; i < nbEntities2; ++i) {
                     Set<IRI> temp = new HashSet<>();
-                    for (Object ob: ((OWLClassImpl) entity2o[i]).getSuperClasses((OWLOntology) heavyOntology2.getOntology())){
-                        IRI iri = ((OWLObject)ob).getClassesInSignature().iterator().next().getIRI();
+                    for (OWLObject ob: ((OWLClassImpl) entity2o[i]).getSuperClasses((OWLOntology) heavyOntology2.getOntology())){
+                        IRI iri = ob.getClassesInSignature().iterator().next().getIRI();
                         if(! iri.toString().endsWith("Thing"))
                             temp.add(iri);
                     }
@@ -173,9 +173,9 @@ public class AMAlignment2 extends DistanceAlignment implements AlignmentProcess 
             }
 
             System.out.println("\nRunning SA:");
-            double threshold = 0.70;
+            double threshold = 0.0;
             SimulatedAnnealing SA = new SimulatedAnnealing(matrix, supO1, supO2, subO1, subO2, entity1o, entity2o);
-            SA.solve(150);
+            SA.solve(20);
             List<Pair<Integer, Integer>>  result = SA.getSolution();
             System.out.println("\nSA finished.");
             for (Pair<Integer, Integer> item: result)
