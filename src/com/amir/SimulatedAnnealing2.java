@@ -1,8 +1,5 @@
 package com.amir;
 
-import org.semanticweb.owlapi.model.IRI;
-import org.semanticweb.owlapi.model.OWLClass;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -12,25 +9,17 @@ import java.util.stream.Collectors;
 @SuppressWarnings("Duplicates")
 public class SimulatedAnnealing2 {
     private double[][] similarity;
+    private double[][] similaritySup;
     private List<Integer> sol;
-    private int row, col;
-    private double threshold = 0.01;
-    private List<Set> supO1;
-    private List<Set> supO2;
-    private List<Set> subO1;
-    private List<Set> subO2;
-    private Object[] class1o;
-    private Object[] class2o;
+    private int row, col, cntGoods = 0;
+    private double threshold = 0.80;
+
     private Random random;
 
-    public SimulatedAnnealing2(double[][] sim, List<Set> sp1, List<Set> sp2, List<Set> sb1, List<Set> sb2, Object [] co1, Object [] co2){
-        supO1 = sp1;
-        supO2 = sp2;
-        subO1 = sb1;
-        subO2 = sb2;
-        class1o = co1;
-        class2o = co2;
+    public SimulatedAnnealing2(double[][] sim, double[][] simSup){
+
         similarity = sim;
+        similaritySup = simSup;
         row = sim.length;
         col = sim[0].length;
         //random = new Random(System.currentTimeMillis());
@@ -72,88 +61,82 @@ public class SimulatedAnnealing2 {
         return extractSolutionFinal(sol);
     }
     private List<Integer> successor(final List<Integer> curr) {
-        int batchSz = Math.min(4, row);
-        int[] randInx = random.ints(0, row).distinct().limit(batchSz).toArray();
+        int batchSz = Math.min(100, (row / 2) * 2);
+        int[] randInx = random.ints(cntGoods, row).distinct().limit(batchSz).toArray();
         List<Integer> next = new ArrayList<>(curr);
         for (int i = 0; i < batchSz; i += 2)
             java.util.Collections.swap(next, randInx[i], randInx[i + 1]);
         return next;
     }
-    private double getFitness(List<Integer> S) {
-        double sum2 = 0, sum3 = 0;
-        double reward, sum1 = 0;
+    private double getFitness(final List<Integer> S) {
+        double sum1 = 0, sum2 = 0;
         List<Pair<Integer, Integer>> SS = extractSolution(S);
         for (Pair<Integer, Integer> item: SS) {
-
-            if(similarity[item.getL()][item.getR()] > 0.8) {
-                sum1 += similarity[item.getL()][item.getR()];
+            double simVal = similarity[item.getL()][item.getR()];
+            if(simVal > threshold) {
+                sum1 += simVal;
                 continue;
             }
-
-            if(supO1.size() != 0 && similarity[item.getL()][item.getR()] > 0.5) {
-                for (Object leftClass : supO1.get(item.getL())) {
-                    reward = .0;
-                    for (Object rightClass : supO2.get(item.getR())) {
-                        reward = Matched((IRI) leftClass, (IRI) rightClass, SS);
-                        if (reward != -1.0) {
-                            break;
-                        }
-                    }
-                    if(reward > 0.9){
-                        sum2 += similarity[item.getL()][item.getR()];
-                        break;
-                    }
-                }
+            double simValSup = similaritySup[item.getL()][item.getR()];
+            if (simVal > 0.6 && simValSup >= 1.0) {
+                sum2 += simVal;
+                continue;
             }
-
-            /*
-            if(subO1.size() != 0) {
-                for (Object leftClass : subO1.get(item.getL()))
-                    for (Object rightClass : subO2.get(item.getR()))
-                        if (isMatched(leftClass, rightClass, SS)) {
-                            sum3 += reward;
-                            break;
-                        }
-            }
-            */
-
-            //sum1 += similarity[item.getL()][item.getR()];
+            if (simVal > 0.65 && simValSup >= 0.8)
+                sum2 += simVal;
         }
-        return sum1 * 150 + sum2 * 100 + sum3;
+        return sum1 * 200 + sum2 * 10;
     }
     private List<Integer> generateInitSol(){
-        return random.ints(0, row).distinct().limit(row).boxed().collect(Collectors.toCollection(ArrayList::new));
+        List<Integer> randOrder = random.ints(0, row).distinct().limit(row).boxed().collect(Collectors.toCollection(ArrayList::new));
+        List<Integer> ans = new ArrayList<>(row);
+        boolean[] selected = new boolean[col];
+        boolean[] selected2 = new boolean[row];
+        int maxInd;
+        double maxVal;
+        for (double thr = 1.0; thr >= 0.8; thr -= 0.1) {
+            for (int i : randOrder) {
+                if(selected2[i]) continue;
+                maxInd = -1;
+                maxVal = -1;
+                for (int j = 0; j < col; ++j) {
+                    if (similarity[i][j] > maxVal && !selected[j]) {
+                        maxInd = j;
+                        maxVal = similarity[i][j];
+                    }
+                }
+                if (maxVal >= thr) {
+                    selected[maxInd] = true;
+                    selected2[i] = true;
+                    cntGoods++;
+                    ans.add(i);
+                }
+            }
+        }
+        for (int i : randOrder) if (!selected2[i]) ans.add(i);
+        return ans;
     }
-    private List<Pair<Integer, Integer>> extractSolutionFinal(List<Integer> visitOrder){
+    private List<Pair<Integer, Integer>> extractSolutionFinal(final List<Integer> visitOrder){
         List<Pair<Integer, Integer>> SS = extractSolution(visitOrder);
         List<Pair<Integer, Integer>> res = new ArrayList<>();
-        double reward;
-        for (Pair<Integer, Integer> item: SS) {
 
-            if(similarity[item.getL()][item.getR()] > 0.8) {
+        for (Pair<Integer, Integer> item: SS) {
+            double simVal = similarity[item.getL()][item.getR()];
+            if(simVal >= threshold) {
                 res.add(item);
                 continue;
             }
-            if(supO1.size() != 0 && similarity[item.getL()][item.getR()] > 0.5) {
-                for (Object leftClass : supO1.get(item.getL())) {
-                    reward = 0;
-                    for (Object rightClass : supO2.get(item.getR())) {
-                        reward = Matched((IRI) leftClass, (IRI) rightClass, SS);
-                        if (reward != -1.0) {
-                            break;
-                        }
-                    }
-                    if(reward > 0.9)
-                    {
-                        res.add(item);
-                        break;
-                    }
-                }
+            double simValSup = similaritySup[item.getL()][item.getR()];
+            if (simVal > 0.6 && simValSup >= 1.0) {
+                res.add(item);
+                continue;
             }
+            if (simVal > 0.65 && simValSup >= 0.8)
+                res.add(item);
         }
         return res;
     }
-    private List<Pair<Integer, Integer>> extractSolution(List<Integer> visitOrder){
+    private List<Pair<Integer, Integer>> extractSolution(final List<Integer> visitOrder){
 
         int maxInd;
         double maxVal;
@@ -169,21 +152,11 @@ public class SimulatedAnnealing2 {
                     maxVal = similarity[i][j];
                 }
             }
-            if(threshold <= maxVal) {
+            if(maxVal >= 0.0) {
                 selected[maxInd] = true;
                 res.add(new Pair<>(i, maxInd));
             }
         }
         return res;
-    }
-    private boolean isMatched(IRI o1, IRI o2, List<Pair<Integer, Integer>> ref){
-        for(Pair<Integer, Integer> item: ref)
-            if(((OWLClass)class1o[item.getL()]).getIRI() == o1 && ((OWLClass)class2o[item.getR()]).getIRI() == o2) return true;
-        return false;
-    }
-    private double Matched(IRI o1, IRI o2, List<Pair<Integer, Integer>> ref){
-        for(Pair<Integer, Integer> item: ref)
-            if(((OWLClass)class1o[item.getL()]).getIRI() == o1 && ((OWLClass)class2o[item.getR()]).getIRI() == o2) return similarity[item.getL()][item.getR()];
-        return -1;
     }
 }

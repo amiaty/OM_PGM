@@ -298,6 +298,10 @@ public class Main {
             e.printStackTrace();
         }
     }
+    // Choice number 8
+    private static void AnalyzAnatomyRef() {
+
+    }
     // Choice number 9
     private static void testJWNL() {
         NormalizedLevenshtein levenshtein = new NormalizedLevenshtein();

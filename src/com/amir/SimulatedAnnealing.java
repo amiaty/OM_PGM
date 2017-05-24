@@ -14,7 +14,7 @@ public class SimulatedAnnealing {
     private double[][] similarity;
     private List<Integer> sol;
     private int row, col;
-    private double threshold = 0.3;
+    private double threshold = 0.85;
     private List<Set> supO1;
     private List<Set> supO2;
     private List<Set> subO1;

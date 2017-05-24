@@ -40,49 +40,50 @@ public class AMAlignment2 extends DistanceAlignment implements AlignmentProcess 
         try {
             JWNLDistances Dist = new JWNLDistances();
             Dist.Initialize("./dict", "3.1");
+
             heavyOntology1 = (HeavyLoadedOntology<Object>)getOntologyObject1();
             heavyOntology2 = (HeavyLoadedOntology<Object>)getOntologyObject2();
             String p1 = param.getProperty("ObjType", "class");
             int nbEntities1;
             int nbEntities2;
-            Object[] entity1o;
-            Object[] entity2o;
+            OWLObject[] entity1o;
+            OWLObject[] entity2o;
             switch (p1) {
                 case "class":
                     nbEntities1 = heavyOntology1.nbClasses();
                     nbEntities2 = heavyOntology2.nbClasses();
-                    entity1o = heavyOntology1.getClasses().toArray();
-                    entity2o = heavyOntology2.getClasses().toArray();
+                    entity1o = heavyOntology1.getClasses().toArray(new OWLObject[nbEntities1]);
+                    entity2o = heavyOntology2.getClasses().toArray(new OWLObject[nbEntities2]);
                     break;
                 case "property":
                     nbEntities1 = heavyOntology1.nbProperties();
                     nbEntities2 = heavyOntology2.nbProperties();
-                    entity1o = heavyOntology1.getProperties().toArray();
-                    entity2o = heavyOntology2.getProperties().toArray();
+                    entity1o = heavyOntology1.getProperties().toArray(new OWLObject[nbEntities1]);
+                    entity2o = heavyOntology2.getProperties().toArray(new OWLObject[nbEntities2]);
                     break;
                 case "data_property":
                     nbEntities1 = heavyOntology1.nbDataProperties();
                     nbEntities2 = heavyOntology2.nbDataProperties();
-                    entity1o = heavyOntology1.getDataProperties().toArray();
-                    entity2o = heavyOntology2.getDataProperties().toArray();
+                    entity1o = heavyOntology1.getDataProperties().toArray(new OWLObject[nbEntities1]);
+                    entity2o = heavyOntology2.getDataProperties().toArray(new OWLObject[nbEntities2]);
                     break;
                 case "object_property":
                     nbEntities1 = heavyOntology1.nbObjectProperties();
                     nbEntities2 = heavyOntology2.nbObjectProperties();
-                    entity1o = heavyOntology1.getObjectProperties().toArray();
-                    entity2o = heavyOntology2.getObjectProperties().toArray();
+                    entity1o = heavyOntology1.getObjectProperties().toArray(new OWLObject[nbEntities1]);
+                    entity2o = heavyOntology2.getObjectProperties().toArray(new OWLObject[nbEntities2]);
                     break;
                 case "individual":
                     nbEntities1 = heavyOntology1.nbIndividuals();
                     nbEntities2 = heavyOntology2.nbIndividuals();
-                    entity1o = heavyOntology1.getIndividuals().toArray();
-                    entity2o = heavyOntology2.getIndividuals().toArray();
+                    entity1o = heavyOntology1.getIndividuals().toArray(new OWLObject[nbEntities1]);
+                    entity2o = heavyOntology2.getIndividuals().toArray(new OWLObject[nbEntities2]);
                     break;
                 default:
                     nbEntities1 = heavyOntology1.nbEntities();
                     nbEntities2 = heavyOntology2.nbEntities();
-                    entity1o = heavyOntology1.getEntities().toArray();
-                    entity2o = heavyOntology2.getEntities().toArray();
+                    entity1o = heavyOntology1.getEntities().toArray(new OWLObject[nbEntities1]);
+                    entity2o = heavyOntology2.getEntities().toArray(new OWLObject[nbEntities2]);
                     break;
             }
 
@@ -91,7 +92,8 @@ public class AMAlignment2 extends DistanceAlignment implements AlignmentProcess 
             List<Set<String>> entity2ss = new ArrayList<>(nbEntities1);
             String str1;
 
-            for ( Object ob : entity1o ) {
+
+            for ( OWLObject ob : entity1o ) {
                 Set<String> names = new HashSet<>();
                 for (OWLAnnotationAssertionAxiom ob1 : ((OWLOntology)getOntology1()).getAnnotationAssertionAxioms(((OWLClass)ob).getIRI())) {
                     if(ob1.getProperty().isLabel()) {
@@ -105,7 +107,7 @@ public class AMAlignment2 extends DistanceAlignment implements AlignmentProcess 
                 entity1ss.add(names);
             }
 
-            for ( Object ob : entity2o ) {
+            for ( OWLObject ob : entity2o ) {
                 Set<String> names = new HashSet<>();
                 for (OWLAnnotationAssertionAxiom ob1 : ((OWLOntology)getOntology2()).getAnnotationAssertionAxioms(((OWLClass)ob).getIRI())) {
                     if(ob1.getProperty().isLabel()) {
@@ -144,38 +146,60 @@ public class AMAlignment2 extends DistanceAlignment implements AlignmentProcess 
                 System.out.print(String.format("\r%d%% completed!", (int)(ii + step)));
             }
 
-            List<Set> supO1 = new ArrayList<>();
-            List<Set> supO2 = new ArrayList<>();
-            List<Set> subO1 = new ArrayList<>();
-            List<Set> subO2 = new ArrayList<>();
-
+            List<Set<String>> supO1 = new ArrayList<>();
+            List<Set<String>> supO2 = new ArrayList<>();
+            double[][] matSup = null;
             if(Objects.equals(p1, "class")) {
+                matSup = new double[nbEntities1][nbEntities2];
+                HashMap<String, Integer> iriC1 = new HashMap<>(nbEntities1);
+                HashMap<String, Integer> iriC2 = new HashMap<>(nbEntities2);
+
+
                 for (i = 0; i < nbEntities1; ++i) {
-                    Set<IRI> temp = new HashSet<>();
+                    iriC1.put(((OWLClass)entity1o[i]).getIRI().toString(), i);
+                    Set<String> temp = new HashSet<>();
                     for (OWLObject ob: ((OWLClassImpl) entity1o[i]).getSuperClasses((OWLOntology) heavyOntology1.getOntology())) {
-                        IRI iri = ob.getClassesInSignature().iterator().next().getIRI();
-                        if(! iri.toString().endsWith("Thing"))
+                        if(ob.getClass().toString().startsWith("class"))
+                            continue;
+                        String iri = ob.getClassesInSignature().iterator().next().getIRI().toString();
+                        if(! iri.endsWith("Thing"))
                             temp.add(iri);
                     }
                     supO1.add(temp);
-                    subO1.add(((OWLClassImpl)entity1o[i]).getSubClasses((OWLOntology) heavyOntology1.getOntology()));
+                    //subO1.add(((OWLClassImpl)entity1o[i]).getSubClasses((OWLOntology) heavyOntology1.getOntology()));
                 }
+
                 for (i = 0; i < nbEntities2; ++i) {
-                    Set<IRI> temp = new HashSet<>();
+                    iriC2.put(((OWLClass)entity2o[i]).getIRI().toString(), i);
+                    Set<String> temp = new HashSet<>();
                     for (OWLObject ob: ((OWLClassImpl) entity2o[i]).getSuperClasses((OWLOntology) heavyOntology2.getOntology())){
-                        IRI iri = ob.getClassesInSignature().iterator().next().getIRI();
-                        if(! iri.toString().endsWith("Thing"))
+                        if(ob.getClass().toString().startsWith("class"))
+                            continue;
+                        String iri = ob.getClassesInSignature().iterator().next().getIRI().toString();
+                        if(! iri.endsWith("Thing"))
                             temp.add(iri);
                     }
                     supO2.add(temp);
-                    subO2.add(((OWLClassImpl)entity2o[i]).getSubClasses((OWLOntology) heavyOntology2.getOntology()));
+                    //subO2.add(((OWLClassImpl)entity2o[i]).getSubClasses((OWLOntology) heavyOntology2.getOntology()));
+                }
+                double maxSim;
+                for( i = 0; i < nbEntities1; ++i) {
+                    for (j = 0; j < nbEntities2; ++j) {
+                        maxSim = 0.0;
+                        for (String ob1 : supO1.get(i)) {
+                            int ind1 = iriC1.get(ob1);
+                            for (String ob2 : supO2.get(j))
+                                maxSim = Math.max(maxSim, matrix[ind1][iriC2.get(ob2)]);
+                        }
+                        matSup[i][j] = maxSim;
+                    }
                 }
             }
 
             System.out.println("\nRunning SA:");
             double threshold = 0.0;
-            SimulatedAnnealing SA = new SimulatedAnnealing(matrix, supO1, supO2, subO1, subO2, entity1o, entity2o);
-            SA.solve(20);
+            SimulatedAnnealing2 SA = new SimulatedAnnealing2(matrix, matSup);
+            SA.solve(200);
             List<Pair<Integer, Integer>>  result = SA.getSolution();
             System.out.println("\nSA finished.");
             for (Pair<Integer, Integer> item: result)
